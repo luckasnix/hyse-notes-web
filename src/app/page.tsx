@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { yellow } from "@mui/material/colors";
 
 import { TopicsSection } from "~/sections/topics-sections";
+import { TopicAdditionModal } from "~/modals/topic-addition-modal";
 import type { TopicData } from "~/components/topic";
 
 const topicList: TopicData[] = [
@@ -25,9 +26,18 @@ const topicList: TopicData[] = [
 
 const Home = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const selectTopic = (id: string) => {
     setSelectedTopic(id);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -36,9 +46,7 @@ const Home = () => {
         topicList={topicList}
         selectedTopic={selectedTopic}
         selectTopic={selectTopic}
-        onAddTopicButtonClick={() => {
-          console.log('Add topic button clicked!');
-        }}
+        onAddTopicButtonClick={openModal}
       />
       <Grid container size="grow" direction="row" justifyContent="center" alignItems="center">
         <Image
@@ -49,6 +57,7 @@ const Home = () => {
         />
         <Typography variant="h1" sx={{ color: yellow[800] }}>Hyse Notes</Typography>
       </Grid>
+      <TopicAdditionModal open={isModalOpen} onClose={closeModal} />
     </Grid>
   );
 };
