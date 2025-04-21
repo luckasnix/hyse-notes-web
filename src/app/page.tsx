@@ -3,7 +3,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { yellow } from "@mui/material/colors";
 
 import { TopicsSection } from "~/sections/topics-sections";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
@@ -55,7 +54,7 @@ const Home = () => {
           height={128}
           alt="Hyse Notes logo"
         />
-        <Typography variant="h1" sx={{ color: yellow[800] }}>Hyse Notes</Typography>
+        <Typography variant="h1" sx={{ color: "primary.main" }}>Hyse Notes</Typography>
       </Grid>
       <TopicAdditionModal open={isModalOpen} onClose={closeModal} />
     </Grid>
