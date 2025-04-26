@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -27,12 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <NuqsAdapter>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {children}
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
