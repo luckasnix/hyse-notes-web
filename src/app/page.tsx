@@ -4,7 +4,7 @@ import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { TopicsSection } from "~/sections/topics-sections";
+import { TopicsSection } from "~/sections/topics-section";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
 import type { TopicData } from "~/components/topic";
 
