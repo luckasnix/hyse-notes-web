@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useQueryState } from "nuqs";
 import Grid from "@mui/material/Grid";
 
 import { MainSection } from "~/sections/main-section";
@@ -23,7 +24,7 @@ const topicList: TopicData[] = [
 ];
 
 const Home = () => {
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = useQueryState("topic");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const selectTopic = (id: string) => {
