@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 
+import { MainSection } from "~/sections/main-section";
 import { TopicsSection } from "~/sections/topics-section";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
 import type { TopicData } from "~/components/topic";
@@ -47,16 +46,8 @@ const Home = () => {
         selectTopic={selectTopic}
         onAddTopicButtonClick={openModal}
       />
-      <Grid container size="grow" direction="row" justifyContent="center" alignItems="center">
-        <Image
-          src="/logo.svg"
-          width={128}
-          height={128}
-          alt="Hyse Notes logo"
-        />
-        <Typography variant="h1" sx={{ color: "primary.main" }}>Hyse Notes</Typography>
-      </Grid>
       <TopicAdditionModal open={isModalOpen} onClose={closeModal} />
+      <MainSection />
     </Grid>
   );
 };
