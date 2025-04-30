@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import type { SxProps, Theme } from "@mui/material/styles";
 
-import { Topic, type TopicData } from "~/components/topic";
+import { TopicItem } from "~/components/topic-item";
+import type { TopicData } from "~/types/general";
 
 export const containerStyle: SxProps<Theme> = {
   width: "100%",
@@ -44,8 +45,7 @@ export const TopicsSection = ({
     <List component="nav">
       {topicList.map(({ id, title, description }, index) => (
         <Fragment key={id}>
-          <Topic
-            id={id}
+          <TopicItem
             title={title}
             description={description}
             selected={selectedTopic === id}
