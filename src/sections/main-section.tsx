@@ -15,12 +15,9 @@ export const titleTextStyle: SxProps<Theme> = {
 
 export const MainSection = () => (
   <Grid container size="grow" sx={containerStyle}>
-    <Image
-      src="/logo.svg"
-      width={128}
-      height={128}
-      alt="Hyse Notes logo"
-    />
-    <Typography variant="h1" sx={titleTextStyle}>Hyse Notes</Typography>
+    <Image src="/logo.svg" width={128} height={128} alt="Hyse Notes logo" />
+    <Typography variant="h1" sx={titleTextStyle}>
+      Hyse Notes
+    </Typography>
   </Grid>
 );

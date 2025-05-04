@@ -1,18 +1,29 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useQueryState } from "nuqs";
+import { useLiveQuery } from "dexie-react-hooks";
 import Grid from "@mui/material/Grid";
 
 import { MainSection } from "~/sections/main-section";
 import { TopicsSection } from "~/sections/topics-section";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
-import { topicList } from "~/mocks/general";
+import { localDb } from "~/database/local";
 
 const Home = () => {
-  const [topicId, setTopicId] = useQueryState("topic");
+  const [topicId, setTopicId] = useQueryState("t");
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const selectedTopic = useMemo(() => topicList.find(({ id }) => id === topicId), [topicId]);
+  const topicList = useLiveQuery(() => {
+    return localDb.topics.orderBy("updatedAt").toArray();
+  });
+
+  const selectedTopic = useLiveQuery(() => {
+    if (!topicId) {
+      return undefined;
+    }
+    return localDb.topics.get(topicId);
+  }, [topicId]);
 
   const selectTopic = (id: string) => {
     setTopicId(id);
@@ -29,8 +40,8 @@ const Home = () => {
   return (
     <Grid container>
       <TopicsSection
-        topicList={topicList}
-        selectedTopic={topicId}
+        topicList={topicList ?? []}
+        selectedTopicId={topicId}
         selectTopic={selectTopic}
         onAddTopicButtonClick={openModal}
       />

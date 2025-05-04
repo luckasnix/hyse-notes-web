@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import type { SxProps, Theme } from "@mui/material/styles";
 
 import { TopicItem } from "~/components/topic-item";
-import type { TopicData } from "~/types/general";
+import type { Topic } from "~/database/local";
 
 export const containerStyle: SxProps<Theme> = {
   width: "100%",
@@ -20,21 +20,28 @@ export const containerStyle: SxProps<Theme> = {
   overflowY: "scroll",
 };
 
+export const headerStyle: SxProps<Theme> = {
+  direction: "row",
+  justifyContent: "space-between",
+  paddingX: 2,
+  paddingY: 1,
+};
+
 export type TopicsSectionProps = Readonly<{
-  topicList: TopicData[];
-  selectedTopic: string | null;
+  topicList: Topic[];
+  selectedTopicId: string | null;
   selectTopic: (id: string) => void;
   onAddTopicButtonClick: MouseEventHandler<HTMLButtonElement>;
 }>;
 
 export const TopicsSection = ({
   topicList,
-  selectedTopic,
+  selectedTopicId,
   selectTopic,
-  onAddTopicButtonClick
+  onAddTopicButtonClick,
 }: TopicsSectionProps) => (
   <Box component="section" sx={containerStyle}>
-    <Grid container direction="row" justifyContent="space-between" paddingX={2} paddingY={1}>
+    <Grid container sx={headerStyle}>
       <Typography variant="h4">Topics</Typography>
       <Tooltip title="Add topic" placement="bottom">
         <IconButton onClick={onAddTopicButtonClick}>
@@ -48,7 +55,7 @@ export const TopicsSection = ({
           <TopicItem
             title={title}
             description={description}
-            selected={selectedTopic === id}
+            selected={selectedTopicId === id}
             onClick={() => selectTopic(id)}
           />
           {topicList.length !== index + 1 && <Divider variant="middle" />}

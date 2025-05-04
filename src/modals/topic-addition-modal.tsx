@@ -1,4 +1,5 @@
 import type { FormEventHandler } from "react";
+import { nanoid } from "nanoid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -8,6 +9,9 @@ import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
+
+import { localDb, type Topic } from "~/database/local";
+import { getTimestampInSeconds } from "~/utils/general";
 
 export const formStyle: SxProps<Theme> = {
   position: "absolute",
@@ -31,10 +35,15 @@ export type TopicAdditionModalProps = Readonly<{
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must contain at least 2 characters"),
-  description: z.string().min(2, "Description must contain at least 2 characters"),
+  description: z
+    .string()
+    .min(2, "Description must contain at least 2 characters"),
 });
 
-export const TopicAdditionModal = ({ open, onClose }: TopicAdditionModalProps) => {
+export const TopicAdditionModal = ({
+  open,
+  onClose,
+}: TopicAdditionModalProps) => {
   const form = useForm({
     defaultValues: {
       title: "",
@@ -43,8 +52,23 @@ export const TopicAdditionModal = ({ open, onClose }: TopicAdditionModalProps) =
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: ({ value }) => {
-      console.log(value);
+    onSubmit: async ({ value, formApi }) => {
+      try {
+        const topicId = nanoid(4);
+        const timestampInSeconds = getTimestampInSeconds();
+        const topicToAdd: Topic = {
+          id: topicId,
+          createdAt: timestampInSeconds,
+          updatedAt: timestampInSeconds,
+          ...value,
+        };
+        await localDb.topics.add(topicToAdd);
+        // TODO: Show a success toast
+      } catch (error) {
+        // TODO: Show a error toast
+      }
+      formApi.reset();
+      onClose();
     },
   });
 
@@ -55,7 +79,12 @@ export const TopicAdditionModal = ({ open, onClose }: TopicAdditionModalProps) =
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box component="form" autoComplete="off" onSubmit={handleSubmit} sx={formStyle}>
+      <Box
+        component="form"
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        sx={formStyle}
+      >
         <Typography variant="h6">Add topic</Typography>
         <form.Field
           name="title"
