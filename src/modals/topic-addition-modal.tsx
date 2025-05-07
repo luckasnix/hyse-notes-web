@@ -10,6 +10,7 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 
+import { useUi } from "~/contexts/ui-context";
 import { localDb, type Topic } from "~/database/local";
 import { getTimestampInSeconds } from "~/utils/general";
 
@@ -44,6 +45,8 @@ export const TopicAdditionModal = ({
   open,
   onClose,
 }: TopicAdditionModalProps) => {
+  const { showToast } = useUi();
+
   const form = useForm({
     defaultValues: {
       title: "",
@@ -63,9 +66,15 @@ export const TopicAdditionModal = ({
           ...value,
         };
         await localDb.topics.add(topicToAdd);
-        // TODO: Show a success toast
+        showToast({
+          severity: "success",
+          message: "Topic created successfully!",
+        });
       } catch (error) {
-        // TODO: Show a error toast
+        showToast({
+          severity: "error",
+          message: "Failed to create topic. Please try again.",
+        });
       }
       formApi.reset();
       onClose();
