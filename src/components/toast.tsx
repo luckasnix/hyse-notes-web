@@ -20,7 +20,12 @@ export type ToastProps = Readonly<
 >;
 
 export const Toast = ({ open, onClose, severity, message }: ToastProps) => (
-  <Snackbar open={open} autoHideDuration={4000} onClose={onClose}>
+  <Snackbar
+    anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    open={open}
+    autoHideDuration={4000}
+    onClose={onClose}
+  >
     <Alert
       variant="filled"
       sx={alertStyle}
