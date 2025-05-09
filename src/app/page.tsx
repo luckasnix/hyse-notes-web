@@ -4,10 +4,11 @@ import { useQueryState } from "nuqs";
 import { useLiveQuery } from "dexie-react-hooks";
 import Grid from "@mui/material/Grid";
 
+import { TopicHeader } from "~/components/topic-header";
+import { localDb } from "~/database/local";
+import { TopicAdditionModal } from "~/modals/topic-addition-modal";
 import { MainSection } from "~/sections/main-section";
 import { TopicsSection } from "~/sections/topics-section";
-import { TopicAdditionModal } from "~/modals/topic-addition-modal";
-import { localDb } from "~/database/local";
 
 const Home = () => {
   const [topicId, setTopicId] = useQueryState("t");
@@ -49,11 +50,12 @@ const Home = () => {
       {topicId === null ? (
         <MainSection />
       ) : (
-        // TODO: Add a topic details component
-        <div>
-          <h1>{selectedTopic?.title}</h1>
-          <p>{selectedTopic?.description}</p>
-        </div>
+        <Grid size="grow">
+          <TopicHeader
+            title={selectedTopic?.title ?? ""}
+            description={selectedTopic?.description ?? ""}
+          />
+        </Grid>
       )}
     </Grid>
   );
