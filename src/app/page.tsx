@@ -17,7 +17,7 @@ const Home = () => {
 
   const topicList = useLiveQuery(() => {
     return localDb.topics.orderBy("updatedAt").toArray();
-  });
+  }, [], []);
 
   const selectedTopic = useLiveQuery(() => {
     if (!topicId) {
@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <Grid container>
       <TopicsSection
-        topicList={topicList ?? []}
+        topicList={topicList}
         selectedTopicId={topicId}
         selectTopic={selectTopic}
         onAddTopicButtonClick={openModal}
