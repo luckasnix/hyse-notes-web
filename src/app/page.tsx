@@ -52,6 +52,7 @@ const Home = () => {
       ) : (
         <Grid size="grow">
           <TopicHeader
+            id={topicId}
             title={selectedTopic?.title ?? ""}
             description={selectedTopic?.description ?? ""}
           />
