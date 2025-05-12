@@ -5,6 +5,8 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { UiProvider } from "~/contexts/ui-context";
 
+import { Fallback } from "./fallback";
+
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
@@ -27,8 +29,7 @@ export default function RootLayout({
       <body className={roboto.variable}>
         <NuqsAdapter>
           <UiProvider>
-            {/* TODO: Add a fallback component */}
-            <Suspense fallback={<div>Carregando...</div>}>{children}</Suspense>
+            <Suspense fallback={<Fallback />}>{children}</Suspense>
           </UiProvider>
         </NuqsAdapter>
       </body>
