@@ -29,7 +29,7 @@ export const avatarStyle: SxProps<Theme> = {
 };
 
 export type TopicHeaderProps = Readonly<{
-  id: string | null;
+  id: string;
   title: string;
   description: string;
 }>;
@@ -52,13 +52,6 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
   };
 
   const deleteTopic = async () => {
-    if (!id) {
-      showToast({
-        severity: "error",
-        message: "Failed to delete topic. Please try again.",
-      });
-      return;
-    }
     try {
       await localDb.topics.delete(id);
       router.push("/");
