@@ -16,7 +16,6 @@ export const containerStyle: SxProps<Theme> = {
   width: "100%",
   maxWidth: 400,
   height: "100dvh",
-  overflow: "hidden",
   overflowY: "scroll",
 };
 

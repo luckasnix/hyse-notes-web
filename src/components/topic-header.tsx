@@ -25,6 +25,7 @@ export const containerStyle: SxProps<Theme> = {
 export const avatarStyle: SxProps<Theme> = {
   width: 56,
   height: 56,
+  bgcolor: "primary.main",
 };
 
 export type TopicHeaderProps = Readonly<{
