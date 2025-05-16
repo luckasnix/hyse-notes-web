@@ -4,6 +4,7 @@ import { useQueryState } from "nuqs";
 import { useLiveQuery } from "dexie-react-hooks";
 import Grid from "@mui/material/Grid";
 
+import { NoteInput } from "~/components/note-input";
 import { TopicHeader } from "~/components/topic-header";
 import { localDb } from "~/database/local";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
@@ -56,6 +57,7 @@ const Home = () => {
             title={selectedTopic?.title ?? ""}
             description={selectedTopic?.description ?? ""}
           />
+          <NoteInput onSubmit={() => console.log("Note saved!")} />
         </Grid>
       )}
     </Grid>

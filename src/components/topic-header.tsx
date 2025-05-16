@@ -18,7 +18,6 @@ import { useUi } from "~/contexts/ui-context";
 import { localDb } from "~/database/local";
 
 export const containerStyle: SxProps<Theme> = {
-  width: "100%",
   paddingX: 3,
   paddingY: 2,
 };
