@@ -9,6 +9,9 @@ import type { SxProps, Theme } from "@mui/material/styles";
 export const containerStyle: SxProps<Theme> = {
   paddingX: 3,
   paddingY: 2,
+  borderTopWidth: 1,
+  borderTopStyle: "solid",
+  borderTopColor: "divider",
 };
 
 export type NoteInputProps = Readonly<{

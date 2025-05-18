@@ -20,6 +20,9 @@ import { localDb } from "~/database/local";
 export const containerStyle: SxProps<Theme> = {
   paddingX: 3,
   paddingY: 2,
+  borderBottomWidth: 1,
+  borderBottomStyle: "solid",
+  borderBottomColor: "divider",
 };
 
 export const avatarStyle: SxProps<Theme> = {
