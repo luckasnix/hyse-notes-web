@@ -4,13 +4,10 @@ import { useQueryState } from "nuqs";
 import { useLiveQuery } from "dexie-react-hooks";
 import Grid from "@mui/material/Grid";
 
-import { NoteInput } from "~/components/note-input";
-import { NoteList } from "~/components/note-list";
-import { TopicHeader } from "~/components/topic-header";
 import { localDb } from "~/database/local";
-import { noteListMock } from "~/mocks/general";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";
 import { MainSection } from "~/sections/main-section";
+import { NotesSection } from "~/sections/notes-section";
 import { TopicsSection } from "~/sections/topics-section";
 
 const Home = () => {
@@ -54,25 +51,10 @@ const Home = () => {
         onAddTopicButtonClick={openModal}
       />
       <TopicAdditionModal open={isModalOpen} onClose={closeModal} />
-      {topicId === null ? (
+      {!selectedTopic ? (
         <MainSection />
       ) : (
-        <Grid
-          size="grow"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100dvh",
-          }}
-        >
-          <TopicHeader
-            id={topicId}
-            title={selectedTopic?.title ?? ""}
-            description={selectedTopic?.description ?? ""}
-          />
-          <NoteList notes={noteListMock} />
-          <NoteInput onSubmit={() => console.log("Note saved!")} />
-        </Grid>
+        <NotesSection selectedTopic={selectedTopic} />
       )}
     </Grid>
   );
