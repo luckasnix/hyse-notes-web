@@ -1,3 +1,4 @@
+import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";
 import Grid from "@mui/material/Grid";
 import type { SxProps, Theme } from "@mui/material/styles";
@@ -6,7 +7,6 @@ import { NoteInput } from "~/components/note-input";
 import { NoteList } from "~/components/note-list";
 import { TopicHeader } from "~/components/topic-header";
 import { localDb, type Note, type Topic } from "~/database/local";
-import { noteListMock } from "~/mocks/general";
 import { getTimestampInSeconds } from "~/utils/general";
 
 export const containerStyle: SxProps<Theme> = {
@@ -20,6 +20,18 @@ export type NotesSectionProps = Readonly<{
 }>;
 
 export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
+  const notes = useLiveQuery(
+    () => {
+      return localDb.notes
+        .where("topicId")
+        .equals(selectedTopic.id)
+        .reverse()
+        .sortBy("createdAt");
+    },
+    [selectedTopic.id],
+    []
+  );
+
   const addNote = async (noteContent: string) => {
     const noteId = nanoid(6);
     const timestampInSeconds = getTimestampInSeconds();
@@ -41,7 +53,7 @@ export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
         title={selectedTopic.title}
         description={selectedTopic.description}
       />
-      <NoteList notes={noteListMock} />
+      <NoteList notes={notes} />
       <NoteInput onSubmit={addNote} />
     </Grid>
   );
