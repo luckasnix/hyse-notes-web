@@ -1,6 +1,6 @@
 import type { Topic, Note } from "~/database/local";
 
-export const noteListMock: Note[] = [
+export const notesMock: Note[] = [
   {
     id: "note-1",
     createdAt: 1746978603,
@@ -84,7 +84,7 @@ export const noteListMock: Note[] = [
   },
 ];
 
-export const topicListMock: Topic[] = [
+export const topicsMock: Topic[] = [
   {
     id: "CDTV",
     createdAt: 1746387127,
