@@ -19,20 +19,20 @@ export const metadata: Metadata = {
   description: "Create and organize your notes",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={roboto.variable}>
-        <NuqsAdapter>
-          <UiProvider>
-            <Suspense fallback={<Fallback />}>{children}</Suspense>
-          </UiProvider>
-        </NuqsAdapter>
-      </body>
-    </html>
-  );
-}
+}>) => (
+  <html lang="en">
+    <body className={roboto.variable}>
+      <NuqsAdapter>
+        <UiProvider>
+          <Suspense fallback={<Fallback />}>{children}</Suspense>
+        </UiProvider>
+      </NuqsAdapter>
+    </body>
+  </html>
+);
+
+export default RootLayout;
