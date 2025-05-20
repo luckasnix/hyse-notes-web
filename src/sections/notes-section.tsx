@@ -1,3 +1,4 @@
+"use client";
 import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";
 import Grid from "@mui/material/Grid";

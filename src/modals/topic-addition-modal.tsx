@@ -1,3 +1,4 @@
+"use client";
 import type { FormEventHandler } from "react";
 import { nanoid } from "nanoid";
 import Box from "@mui/material/Box";

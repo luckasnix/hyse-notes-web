@@ -1,3 +1,4 @@
+"use client";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Fragment, type MouseEventHandler } from "react";
 import Box from "@mui/material/Box";

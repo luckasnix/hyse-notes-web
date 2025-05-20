@@ -1,3 +1,4 @@
+"use client";
 import { useState, type ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
