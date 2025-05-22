@@ -1,6 +1,6 @@
 "use client";
-import { useState, type MouseEvent } from "react";
-import { useRouter } from "next/navigation";
+import DeleteIcon from "@mui/icons-material/Delete";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -10,9 +10,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import DeleteIcon from "@mui/icons-material/Delete";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
+import { useState, type MouseEvent } from "react";
 
 import { useUi } from "~/contexts/ui-context";
 import { localDb } from "~/database/local";

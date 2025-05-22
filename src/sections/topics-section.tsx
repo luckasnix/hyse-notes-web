@@ -1,6 +1,5 @@
 "use client";
-import { useLiveQuery } from "dexie-react-hooks";
-import { Fragment, type MouseEventHandler } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
@@ -8,8 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import AddIcon from "@mui/icons-material/Add";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { useLiveQuery } from "dexie-react-hooks";
+import { Fragment, type MouseEventHandler } from "react";
 
 import { TopicItem } from "~/components/topic-item";
 import { localDb } from "~/database/local";

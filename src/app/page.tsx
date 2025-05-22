@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
-import { useQueryState } from "nuqs";
-import { useLiveQuery } from "dexie-react-hooks";
 import Grid from "@mui/material/Grid";
+import { useLiveQuery } from "dexie-react-hooks";
+import { useQueryState } from "nuqs";
+import { useState } from "react";
 
 import { localDb } from "~/database/local";
 import { TopicAdditionModal } from "~/modals/topic-addition-modal";

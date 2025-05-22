@@ -1,8 +1,8 @@
 "use client";
-import { useLiveQuery } from "dexie-react-hooks";
-import { nanoid } from "nanoid";
 import Grid from "@mui/material/Grid";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { useLiveQuery } from "dexie-react-hooks";
+import { nanoid } from "nanoid";
 
 import { NoteInput } from "~/components/note-input";
 import { NoteList } from "~/components/note-list";

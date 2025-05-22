@@ -1,4 +1,7 @@
 "use client";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import {
   createContext,
   useCallback,
@@ -6,9 +9,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 
 import { Toast, type ToastOptions, type ToastProps } from "~/components/toast";
 import { theme } from "~/styles/theme";

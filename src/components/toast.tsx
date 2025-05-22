@@ -1,7 +1,7 @@
-import type { ComponentProps } from "react";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { ComponentProps } from "react";
 
 export const alertStyle: SxProps<Theme> = {
   width: "100%",

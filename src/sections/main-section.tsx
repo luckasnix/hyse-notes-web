@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
+import Image from "next/image";
 
 export const containerStyle: SxProps<Theme> = {
   direction: "row",
