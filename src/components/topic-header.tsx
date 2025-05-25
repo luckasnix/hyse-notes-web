@@ -57,6 +57,7 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
   const deleteTopic = async () => {
     try {
       await localDb.topics.delete(id);
+      await localDb.notes.where("topicId").equals(id).delete();
       router.push("/");
       showToast({
         severity: "success",
