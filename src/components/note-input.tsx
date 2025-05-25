@@ -22,8 +22,9 @@ export type NoteInputProps = Readonly<{
 export const NoteInput = ({ onSubmit }: NoteInputProps) => {
   const [content, setContent] = useState("");
 
+  const trimmedContent = content.trim();
+
   const saveNote = () => {
-    const trimmedContent = content.trim();
     if (trimmedContent) {
       onSubmit(trimmedContent);
       setContent("");
@@ -50,7 +51,7 @@ export const NoteInput = ({ onSubmit }: NoteInputProps) => {
       <Box>
         <IconButton
           color="primary"
-          disabled={!content.trim()}
+          disabled={!trimmedContent.length}
           onClick={saveNote}
         >
           <ArrowUpwardIcon />
