@@ -4,16 +4,13 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import { useState, type MouseEvent } from "react";
 
+import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
 import { localDb } from "~/database/local";
 
@@ -89,14 +86,19 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
           <MoreVertIcon />
         </IconButton>
       </Box>
-      <Menu anchorEl={anchorEl} open={open} onClose={closeMenu}>
-        <MenuItem sx={{ color: "error.main" }} onClick={deleteTopic}>
-          <ListItemIcon sx={{ color: "error.light" }}>
-            <DeleteIcon />
-          </ListItemIcon>
-          <ListItemText>Delete topic</ListItemText>
-        </MenuItem>
-      </Menu>
+      <ActionMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={closeMenu}
+        items={[
+          {
+            type: "error",
+            label: "Delete topic",
+            icon: <DeleteIcon />,
+            onClick: deleteTopic,
+          },
+        ]}
+      />
     </Stack>
   );
 };
