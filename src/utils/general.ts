@@ -8,6 +8,6 @@ export const convertTimestampToDate = (timestampInSeconds: number): string => {
   return new Intl.DateTimeFormat("en-US", {
     dateStyle: "full",
     timeStyle: "long",
-    timeZone: "America/New_York",
+    timeZone: "UTC",
   }).format(date);
 };
