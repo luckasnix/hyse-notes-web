@@ -1,5 +1,6 @@
 "use client";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -95,6 +96,13 @@ export const NoteList = ({ notes }: NoteListProps) => {
         open={open}
         onClose={closeMenu}
         items={[
+          {
+            type: "neutral",
+            label: "Edit note",
+            icon: <ModeEditIcon />,
+            onClick: () => {}, // TODO: Add note editing
+            disabled: true,
+          },
           {
             type: "error",
             label: "Delete note",
