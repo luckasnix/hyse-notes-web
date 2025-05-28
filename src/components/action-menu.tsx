@@ -51,7 +51,19 @@ export const ActionMenu = ({
   onClose,
   items,
 }: ActionMenuProps) => (
-  <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
+  <Menu
+    anchorEl={anchorEl}
+    open={open}
+    onClose={onClose}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+  >
     {items.map(({ type, label, icon, disabled, onClick }) => (
       <MenuItem
         key={label}
