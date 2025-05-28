@@ -1,5 +1,6 @@
 "use client";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -84,6 +85,13 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
         open={open}
         onClose={closeMenu}
         items={[
+          {
+            type: "neutral",
+            label: "Edit topic",
+            icon: <ModeEditIcon />,
+            onClick: () => {}, // TODO: Add topic editing
+            disabled: true,
+          },
           {
             type: "error",
             label: "Delete topic",
