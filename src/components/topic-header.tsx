@@ -36,11 +36,8 @@ export type TopicHeaderProps = Readonly<{
 
 export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
   const router = useRouter();
-
   const { showToast } = useUi();
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
   const openMenu = (event: MouseEvent<HTMLButtonElement>) => {
@@ -56,10 +53,6 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
       await localDb.topics.delete(id);
       await localDb.notes.where("topicId").equals(id).delete();
       router.push("/");
-      showToast({
-        severity: "success",
-        message: "Topic deleted successfully!",
-      });
     } catch {
       showToast({
         severity: "error",

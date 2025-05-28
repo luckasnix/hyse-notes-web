@@ -67,10 +67,6 @@ export const TopicAdditionModal = ({
           ...value,
         };
         await localDb.topics.add(topicToAdd);
-        showToast({
-          severity: "success",
-          message: "Topic created successfully!",
-        });
       } catch (error) {
         showToast({
           severity: "error",
