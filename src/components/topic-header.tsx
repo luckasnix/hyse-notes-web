@@ -29,6 +29,12 @@ export const avatarStyle: SxProps<Theme> = {
   bgcolor: "primary.main",
 };
 
+export const textStyle: SxProps<Theme> = {
+  maxWidth: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+};
+
 export type TopicHeaderProps = Readonly<{
   id: string;
   title: string;
@@ -67,11 +73,18 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
       <Avatar variant="rounded" sx={avatarStyle}>
         {title.at(0)?.toUpperCase()}
       </Avatar>
-      <Box sx={{ flex: 1 }}>
-        <Typography variant="h6" component="h2">
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography variant="h6" component="h2" noWrap sx={textStyle}>
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          noWrap
+          sx={{
+            ...textStyle,
+            color: "text.secondary",
+          }}
+        >
           {description}
         </Typography>
       </Box>

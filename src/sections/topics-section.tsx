@@ -66,7 +66,7 @@ export const TopicsSection = ({
               selected={selectedTopicId === id}
               onClick={() => selectTopic(id)}
             />
-            {topics.length !== index + 1 && <Divider variant="middle" />}
+            {topics.length !== index + 1 && <Divider variant="fullWidth" />}
           </Fragment>
         ))}
       </List>

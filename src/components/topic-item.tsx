@@ -8,6 +8,12 @@ export const avatarStyle: SxProps<Theme> = {
   bgcolor: "primary.main",
 };
 
+export const textStyle: SxProps<Theme> = {
+  maxWidth: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+};
+
 export type TopicItemProps = Readonly<{
   title: string;
   description: string;
@@ -27,6 +33,19 @@ export const TopicItem = ({
         {title.at(0)?.toUpperCase()}
       </Avatar>
     </ListItemAvatar>
-    <ListItemText primary={title} secondary={description} />
+    <ListItemText
+      primary={title}
+      secondary={description}
+      slotProps={{
+        primary: {
+          noWrap: true,
+          sx: textStyle,
+        },
+        secondary: {
+          noWrap: true,
+          sx: textStyle,
+        },
+      }}
+    />
   </ListItemButton>
 );
