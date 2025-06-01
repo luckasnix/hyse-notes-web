@@ -10,7 +10,7 @@ import { TopicHeader } from "~/components/topic-header";
 import { localDb, type Note, type Topic } from "~/database/local";
 import { getTimestampInSeconds } from "~/utils/general";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   height: "100dvh",
   display: "flex",
   flexDirection: "column",

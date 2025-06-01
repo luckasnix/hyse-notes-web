@@ -15,7 +15,7 @@ import { useUi } from "~/contexts/ui-context";
 import { localDb, type Topic } from "~/database/local";
 import { getTimestampInSeconds } from "~/utils/general";
 
-export const formStyle: SxProps<Theme> = {
+const formStyle: SxProps<Theme> = {
   position: "absolute",
   top: "50%",
   left: "50%",

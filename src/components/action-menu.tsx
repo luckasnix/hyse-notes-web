@@ -22,7 +22,7 @@ export type ActionMenuProps = Readonly<{
   items: Array<ActionMenuItem>;
 }>;
 
-export const menuItemStyleMap: Record<ActionMenuItemType, SxProps<Theme>> = {
+const menuItemStyleMap: Record<ActionMenuItemType, SxProps<Theme>> = {
   neutral: {},
   success: {
     color: "success.main",
@@ -32,10 +32,7 @@ export const menuItemStyleMap: Record<ActionMenuItemType, SxProps<Theme>> = {
   },
 };
 
-export const listItemIconStyleMap: Record<
-  ActionMenuItemType,
-  SxProps<Theme>
-> = {
+const listItemIconStyleMap: Record<ActionMenuItemType, SxProps<Theme>> = {
   neutral: {},
   success: {
     color: "success.light",

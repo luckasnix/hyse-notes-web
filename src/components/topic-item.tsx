@@ -4,11 +4,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import type { SxProps, Theme } from "@mui/material/styles";
 
-export const avatarStyle: SxProps<Theme> = {
+const avatarStyle: SxProps<Theme> = {
   bgcolor: "primary.main",
 };
 
-export const textStyle: SxProps<Theme> = {
+const textStyle: SxProps<Theme> = {
   maxWidth: "100%",
   overflow: "hidden",
   textOverflow: "ellipsis",

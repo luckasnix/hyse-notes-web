@@ -14,14 +14,14 @@ import { useUi } from "~/contexts/ui-context";
 import { localDb, type Note } from "~/database/local";
 import { convertTimestampToDate } from "~/utils/general";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   paddingX: 6,
   paddingY: 2,
   overflowY: "scroll",
   flex: 1,
 };
 
-export const noteContainerStyle: SxProps<Theme> = {
+const noteContainerStyle: SxProps<Theme> = {
   padding: 2,
   bgcolor: "background.paper",
   borderRadius: 1,

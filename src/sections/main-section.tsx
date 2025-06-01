@@ -3,13 +3,13 @@ import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Image from "next/image";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   direction: "row",
   justifyContent: "center",
   alignItems: "center",
 };
 
-export const titleTextStyle: SxProps<Theme> = {
+const titleTextStyle: SxProps<Theme> = {
   color: "primary.main",
 };
 

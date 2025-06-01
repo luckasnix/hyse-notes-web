@@ -3,7 +3,7 @@ import Snackbar from "@mui/material/Snackbar";
 import type { SxProps, Theme } from "@mui/material/styles";
 import type { ComponentProps } from "react";
 
-export const alertStyle: SxProps<Theme> = {
+const alertStyle: SxProps<Theme> = {
   width: "100%",
 };
 
@@ -13,10 +13,10 @@ export type ToastOptions = {
 };
 
 export type ToastProps = Readonly<
-  {
+  ToastOptions & {
     open: boolean;
     onClose: () => void;
-  } & ToastOptions
+  }
 >;
 
 export const Toast = ({ open, onClose, severity, message }: ToastProps) => (

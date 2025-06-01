@@ -14,14 +14,14 @@ import { Fragment, type MouseEventHandler } from "react";
 import { TopicItem } from "~/components/topic-item";
 import { localDb } from "~/database/local";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   width: "100%",
   maxWidth: 400,
   height: "100dvh",
   overflowY: "scroll",
 };
 
-export const headerStyle: SxProps<Theme> = {
+const headerStyle: SxProps<Theme> = {
   direction: "row",
   justifyContent: "space-between",
   paddingX: 2,

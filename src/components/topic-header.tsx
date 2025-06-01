@@ -15,7 +15,7 @@ import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
 import { localDb } from "~/database/local";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   paddingX: 3,
   paddingY: 2,
   borderBottomWidth: 1,
@@ -23,13 +23,13 @@ export const containerStyle: SxProps<Theme> = {
   borderBottomColor: "divider",
 };
 
-export const avatarStyle: SxProps<Theme> = {
+const avatarStyle: SxProps<Theme> = {
   width: 56,
   height: 56,
   bgcolor: "primary.main",
 };
 
-export const textStyle: SxProps<Theme> = {
+const textStyle: SxProps<Theme> = {
   maxWidth: "100%",
   overflow: "hidden",
   textOverflow: "ellipsis",

@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useState, type ChangeEvent } from "react";
 
-export const containerStyle: SxProps<Theme> = {
+const containerStyle: SxProps<Theme> = {
   paddingX: 3,
   paddingY: 2,
   borderTopWidth: 1,
