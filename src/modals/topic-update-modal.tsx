@@ -1,6 +1,5 @@
 "use client";
 import Modal from "@mui/material/Modal";
-import { nanoid } from "nanoid";
 
 import { TopicForm } from "~/components/topic-form";
 import { useUi } from "~/contexts/ui-context";
@@ -8,32 +7,32 @@ import { localDb, type Topic } from "~/database/local";
 import type { TopicValues } from "~/schemas/topics";
 import { getTimestampInSeconds } from "~/utils/general";
 
-export type TopicAdditionModalProps = Readonly<{
+export type TopicUpdateModalProps = Readonly<{
+  topic: Topic;
   open: boolean;
   onClose: () => void;
 }>;
 
-export const TopicAdditionModal = ({
+export const TopicUpdateModal = ({
+  topic,
   open,
   onClose,
-}: TopicAdditionModalProps) => {
+}: TopicUpdateModalProps) => {
   const { showToast } = useUi();
 
-  const addTopic = async (values: TopicValues) => {
+  const updateTopic = async (values: TopicValues) => {
     try {
-      const topicId = nanoid(4);
       const timestampInSeconds = getTimestampInSeconds();
-      const topicToAdd: Topic = {
+      const topicToUpdate: Topic = {
+        ...topic,
         ...values,
-        id: topicId,
-        createdAt: timestampInSeconds,
         updatedAt: timestampInSeconds,
       };
-      await localDb.topics.add(topicToAdd);
+      await localDb.topics.update(topic.id, topicToUpdate);
     } catch {
       showToast({
         severity: "error",
-        message: "Failed to add topic. Please try again.",
+        message: "Failed to update topic. Please try again.",
       });
     }
   };
@@ -41,14 +40,14 @@ export const TopicAdditionModal = ({
   return (
     <Modal open={open} onClose={onClose}>
       <TopicForm
-        title="Add topic"
-        labels={{ submit: "Add", cancel: "Cancel" }}
+        title="Update topic"
+        labels={{ submit: "Update", cancel: "Cancel" }}
         initialValues={{
-          title: "",
-          description: "",
+          title: topic.title,
+          description: topic.description,
         }}
         onCancel={onClose}
-        onSubmit={addTopic}
+        onSubmit={updateTopic}
       />
     </Modal>
   );
