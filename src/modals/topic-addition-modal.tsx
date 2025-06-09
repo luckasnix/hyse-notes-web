@@ -9,10 +9,10 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import { useForm } from "@tanstack/react-form";
 import { nanoid } from "nanoid";
 import type { FormEventHandler } from "react";
-import { z } from "zod";
 
 import { useUi } from "~/contexts/ui-context";
 import { localDb, type Topic } from "~/database/local";
+import { topicSchema } from "~/schemas/topics";
 import { getTimestampInSeconds } from "~/utils/general";
 
 const formStyle: SxProps<Theme> = {
@@ -35,13 +35,6 @@ export type TopicAdditionModalProps = Readonly<{
   onClose: () => void;
 }>;
 
-const formSchema = z.object({
-  title: z.string().min(2, "Title must contain at least 2 characters"),
-  description: z
-    .string()
-    .min(2, "Description must contain at least 2 characters"),
-});
-
 export const TopicAdditionModal = ({
   open,
   onClose,
@@ -54,7 +47,7 @@ export const TopicAdditionModal = ({
       description: "",
     },
     validators: {
-      onSubmit: formSchema,
+      onSubmit: topicSchema,
     },
     onSubmit: async ({ value, formApi }) => {
       try {
