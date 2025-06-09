@@ -13,7 +13,7 @@ import { useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
-import { localDb } from "~/database/local";
+import { localDb, type Topic } from "~/database/local";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,
@@ -36,12 +36,11 @@ const textStyle: SxProps<Theme> = {
 };
 
 export type TopicHeaderProps = Readonly<{
-  id: string;
-  title: string;
-  description: string;
+  topic: Topic;
+  openModal: () => void;
 }>;
 
-export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
+export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
   const router = useRouter();
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -55,10 +54,15 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
     setAnchorEl(null);
   };
 
+  const updateTopic = () => {
+    openModal();
+    closeMenu();
+  };
+
   const deleteTopic = async () => {
     try {
-      await localDb.topics.delete(id);
-      await localDb.notes.where("topicId").equals(id).delete();
+      await localDb.topics.delete(topic.id);
+      await localDb.notes.where("topicId").equals(topic.id).delete();
       router.push("/");
     } catch {
       showToast({
@@ -71,11 +75,11 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
   return (
     <Stack direction="row" spacing={2} sx={containerStyle}>
       <Avatar variant="rounded" sx={avatarStyle}>
-        {title.at(0)?.toUpperCase()}
+        {topic.title.at(0)?.toUpperCase()}
       </Avatar>
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="h6" component="h2" noWrap sx={textStyle}>
-          {title}
+          {topic.title}
         </Typography>
         <Typography
           variant="body2"
@@ -85,7 +89,7 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
             color: "text.secondary",
           }}
         >
-          {description}
+          {topic.description}
         </Typography>
       </Box>
       <Box>
@@ -100,10 +104,9 @@ export const TopicHeader = ({ id, title, description }: TopicHeaderProps) => {
         items={[
           {
             type: "neutral",
-            label: "Edit topic",
+            label: "Update topic",
             icon: <ModeEditIcon />,
-            onClick: () => {}, // TODO: Add topic editing
-            disabled: true,
+            onClick: updateTopic,
           },
           {
             type: "error",

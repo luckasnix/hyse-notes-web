@@ -3,11 +3,13 @@ import Grid from "@mui/material/Grid";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useLiveQuery } from "dexie-react-hooks";
 import { nanoid } from "nanoid";
+import { useState } from "react";
 
 import { NoteInput } from "~/components/note-input";
 import { NoteList } from "~/components/note-list";
 import { TopicHeader } from "~/components/topic-header";
 import { localDb, type Note, type Topic } from "~/database/local";
+import { TopicUpdateModal } from "~/modals/topic-update-modal";
 import { getTimestampInSeconds } from "~/utils/general";
 
 const containerStyle: SxProps<Theme> = {
@@ -21,6 +23,16 @@ export type NotesSectionProps = Readonly<{
 }>;
 
 export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const notes = useLiveQuery(
     () => {
       return localDb.notes
@@ -49,13 +61,14 @@ export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
 
   return (
     <Grid size="grow" sx={containerStyle}>
-      <TopicHeader
-        id={selectedTopic.id}
-        title={selectedTopic.title}
-        description={selectedTopic.description}
-      />
+      <TopicHeader topic={selectedTopic} openModal={openModal} />
       <NoteList notes={notes} />
       <NoteInput onSubmit={addNote} />
+      <TopicUpdateModal
+        topic={selectedTopic}
+        open={isModalOpen}
+        onClose={closeModal}
+      />
     </Grid>
   );
 };
