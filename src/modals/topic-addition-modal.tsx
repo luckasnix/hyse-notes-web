@@ -1,12 +1,10 @@
 "use client";
 import Modal from "@mui/material/Modal";
-import { nanoid } from "nanoid";
 
 import { TopicForm } from "~/components/topic-form";
 import { useUi } from "~/contexts/ui-context";
-import { localDb, type Topic } from "~/database/local";
 import type { TopicValues } from "~/schemas/topics";
-import { getTimestampInSeconds } from "~/utils/general";
+import { addTopic } from "~/services/topics";
 
 export type TopicAdditionModalProps = Readonly<{
   open: boolean;
@@ -19,23 +17,13 @@ export const TopicAdditionModal = ({
 }: TopicAdditionModalProps) => {
   const { showToast } = useUi();
 
-  const addTopic = async (values: TopicValues) => {
-    try {
-      const topicId = nanoid(4);
-      const timestampInSeconds = getTimestampInSeconds();
-      const topicToAdd: Topic = {
-        ...values,
-        id: topicId,
-        createdAt: timestampInSeconds,
-        updatedAt: timestampInSeconds,
-      };
-      await localDb.topics.add(topicToAdd);
-    } catch {
+  const handleSubmit = (values: TopicValues) => {
+    addTopic(values, undefined, () => {
       showToast({
         severity: "error",
         message: "Failed to add topic. Please try again.",
       });
-    }
+    });
   };
 
   return (
@@ -48,7 +36,7 @@ export const TopicAdditionModal = ({
           description: "",
         }}
         onCancel={onClose}
-        onSubmit={addTopic}
+        onSubmit={handleSubmit}
       />
     </Modal>
   );

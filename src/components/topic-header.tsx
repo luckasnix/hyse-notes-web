@@ -13,7 +13,8 @@ import { useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
-import { localDb, type Topic } from "~/database/local";
+import type { Topic } from "~/database/local";
+import { deleteTopic } from "~/services/topics";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,
@@ -54,22 +55,24 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
     setAnchorEl(null);
   };
 
-  const updateTopic = () => {
+  const handleUpdateTopicOptionClick = () => {
     openModal();
     closeMenu();
   };
 
-  const deleteTopic = async () => {
-    try {
-      await localDb.topics.delete(topic.id);
-      await localDb.notes.where("topicId").equals(topic.id).delete();
-      router.push("/");
-    } catch {
-      showToast({
-        severity: "error",
-        message: "Failed to delete topic. Please try again.",
-      });
-    }
+  const handleDeleteTopicOptionClick = () => {
+    deleteTopic(
+      topic.id,
+      () => {
+        router.push("/");
+      },
+      () => {
+        showToast({
+          severity: "error",
+          message: "Failed to delete topic. Please try again.",
+        });
+      }
+    );
   };
 
   return (
@@ -106,13 +109,13 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
             type: "neutral",
             label: "Update topic",
             icon: <ModeEditIcon />,
-            onClick: updateTopic,
+            onClick: handleUpdateTopicOptionClick,
           },
           {
             type: "error",
             label: "Delete topic",
             icon: <DeleteIcon />,
-            onClick: deleteTopic,
+            onClick: handleDeleteTopicOptionClick,
           },
         ]}
       />

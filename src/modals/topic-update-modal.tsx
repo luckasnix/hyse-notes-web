@@ -3,9 +3,9 @@ import Modal from "@mui/material/Modal";
 
 import { TopicForm } from "~/components/topic-form";
 import { useUi } from "~/contexts/ui-context";
-import { localDb, type Topic } from "~/database/local";
+import type { Topic } from "~/database/local";
 import type { TopicValues } from "~/schemas/topics";
-import { getTimestampInSeconds } from "~/utils/general";
+import { updateTopic } from "~/services/topics";
 
 export type TopicUpdateModalProps = Readonly<{
   topic: Topic;
@@ -20,21 +20,13 @@ export const TopicUpdateModal = ({
 }: TopicUpdateModalProps) => {
   const { showToast } = useUi();
 
-  const updateTopic = async (values: TopicValues) => {
-    try {
-      const timestampInSeconds = getTimestampInSeconds();
-      const topicToUpdate: Topic = {
-        ...topic,
-        ...values,
-        updatedAt: timestampInSeconds,
-      };
-      await localDb.topics.update(topic.id, topicToUpdate);
-    } catch {
+  const handleSubmit = (values: TopicValues) => {
+    updateTopic(values, topic, undefined, () => {
       showToast({
         severity: "error",
         message: "Failed to update topic. Please try again.",
       });
-    }
+    });
   };
 
   return (
@@ -47,7 +39,7 @@ export const TopicUpdateModal = ({
           description: topic.description,
         }}
         onCancel={onClose}
-        onSubmit={updateTopic}
+        onSubmit={handleSubmit}
       />
     </Modal>
   );
