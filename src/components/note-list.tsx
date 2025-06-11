@@ -7,11 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { useLiveQuery } from "dexie-react-hooks";
 import { useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
-import { localDb, type Note } from "~/database/local";
+import { localDb, type Topic } from "~/database/local";
+import { deleteNote } from "~/services/notes";
 import { convertTimestampToDate } from "~/utils/general";
 
 const containerStyle: SxProps<Theme> = {
@@ -29,14 +31,26 @@ const noteContainerStyle: SxProps<Theme> = {
 };
 
 export type NoteListProps = Readonly<{
-  notes: Note[];
+  topic: Topic;
 }>;
 
-export const NoteList = ({ notes }: NoteListProps) => {
+export const NoteList = ({ topic }: NoteListProps) => {
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [currentNoteId, setCurrentNoteId] = useState<string | null>(null);
   const open = Boolean(anchorEl);
+
+  const notes = useLiveQuery(
+    () => {
+      return localDb.notes
+        .where("topicId")
+        .equals(topic.id)
+        .reverse()
+        .sortBy("createdAt");
+    },
+    [topic.id],
+    []
+  );
 
   const openMenu = (event: MouseEvent<HTMLButtonElement>, noteId: string) => {
     setAnchorEl(event.currentTarget);
@@ -47,18 +61,16 @@ export const NoteList = ({ notes }: NoteListProps) => {
     setAnchorEl(null);
   };
 
-  const deleteNote = async () => {
-    if (currentNoteId) {
-      try {
-        await localDb.notes.delete(currentNoteId);
-        closeMenu();
-      } catch {
-        showToast({
-          severity: "error",
-          message: "Failed to delete note. Please try again.",
-        });
-      }
-    }
+  // TODO: Add note update
+  const handleUpdateNoteOptionClick = () => {};
+
+  const handleDeleteNoteOptionClick = () => {
+    deleteNote(currentNoteId, closeMenu, () => {
+      showToast({
+        severity: "error",
+        message: "Failed to delete note. Please try again.",
+      });
+    });
   };
 
   return (
@@ -98,16 +110,16 @@ export const NoteList = ({ notes }: NoteListProps) => {
         items={[
           {
             type: "neutral",
-            label: "Edit note",
+            label: "Update note",
             icon: <ModeEditIcon />,
-            onClick: () => {}, // TODO: Add note editing
+            onClick: handleUpdateNoteOptionClick,
             disabled: true,
           },
           {
             type: "error",
             label: "Delete note",
             icon: <DeleteIcon />,
-            onClick: deleteNote,
+            onClick: handleDeleteNoteOptionClick,
           },
         ]}
       />

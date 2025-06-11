@@ -7,6 +7,10 @@ import TextField from "@mui/material/TextField";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useState, type ChangeEvent } from "react";
 
+import { useUi } from "~/contexts/ui-context";
+import type { Topic } from "~/database/local";
+import { addNote } from "~/services/notes";
+
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,
   paddingY: 2,
@@ -16,17 +20,23 @@ const containerStyle: SxProps<Theme> = {
 };
 
 export type NoteInputProps = Readonly<{
-  onSubmit: (content: string) => void;
+  topic: Topic;
 }>;
 
-export const NoteInput = ({ onSubmit }: NoteInputProps) => {
+export const NoteInput = ({ topic }: NoteInputProps) => {
+  const { showToast } = useUi();
   const [content, setContent] = useState("");
 
   const trimmedContent = content.trim();
 
-  const saveNote = () => {
+  const handleSubmitButtonClick = () => {
     if (trimmedContent) {
-      onSubmit(trimmedContent);
+      addNote(topic.id, trimmedContent, undefined, () => {
+        showToast({
+          severity: "error",
+          message: "Failed to add note. Please try again.",
+        });
+      });
       setContent("");
     }
   };
@@ -52,7 +62,7 @@ export const NoteInput = ({ onSubmit }: NoteInputProps) => {
         <IconButton
           color="primary"
           disabled={!trimmedContent.length}
-          onClick={saveNote}
+          onClick={handleSubmitButtonClick}
         >
           <ArrowUpwardIcon />
         </IconButton>
