@@ -21,7 +21,11 @@ export const TopicUpdateModal = ({
   const { showToast } = useUi();
 
   const handleSubmit = (values: TopicValues) => {
-    updateTopic(values, topic, undefined, () => {
+    const newTopic: Topic = {
+      ...topic,
+      ...values,
+    };
+    updateTopic(newTopic, undefined, () => {
       showToast({
         severity: "error",
         message: "Failed to update topic. Please try again.",

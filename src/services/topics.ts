@@ -26,19 +26,17 @@ export const addTopic = async (
 };
 
 export const updateTopic = async (
-  values: TopicValues,
-  topic: Topic,
+  newTopic: Topic,
   onSuccess?: () => void,
   onError?: () => void
 ) => {
   try {
     const timestampInSeconds = getTimestampInSeconds();
     const topicToUpdate: Topic = {
-      ...topic,
-      ...values,
+      ...newTopic,
       updatedAt: timestampInSeconds,
     };
-    await localDb.topics.update(topic.id, topicToUpdate);
+    await localDb.topics.update(newTopic.id, topicToUpdate);
     onSuccess?.();
   } catch {
     onError?.();
