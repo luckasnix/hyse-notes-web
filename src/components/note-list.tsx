@@ -8,11 +8,12 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useLiveQuery } from "dexie-react-hooks";
-import { useState, type MouseEvent } from "react";
+import { useMemo, useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
 import { localDb, type Topic } from "~/database/local";
+import { NoteUpdateModal } from "~/modals/note-update-modal";
 import { deleteNote } from "~/services/notes";
 import { convertTimestampToDate } from "~/utils/general";
 
@@ -37,6 +38,7 @@ export type NoteListProps = Readonly<{
 export const NoteList = ({ topic }: NoteListProps) => {
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentNoteId, setCurrentNoteId] = useState<string | null>(null);
   const open = Boolean(anchorEl);
 
@@ -52,6 +54,10 @@ export const NoteList = ({ topic }: NoteListProps) => {
     []
   );
 
+  const currentNote = useMemo(() => {
+    return notes.find(({ id }) => id === currentNoteId);
+  }, [notes, currentNoteId]);
+
   const openMenu = (event: MouseEvent<HTMLButtonElement>, noteId: string) => {
     setAnchorEl(event.currentTarget);
     setCurrentNoteId(noteId);
@@ -61,16 +67,28 @@ export const NoteList = ({ topic }: NoteListProps) => {
     setAnchorEl(null);
   };
 
-  // TODO: Add note update
-  const handleUpdateNoteOptionClick = () => {};
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleUpdateNoteOptionClick = () => {
+    openModal();
+    closeMenu();
+  };
 
   const handleDeleteNoteOptionClick = () => {
-    deleteNote(currentNoteId, closeMenu, () => {
-      showToast({
-        severity: "error",
-        message: "Failed to delete note. Please try again.",
+    if (currentNoteId) {
+      deleteNote(currentNoteId, closeMenu, () => {
+        showToast({
+          severity: "error",
+          message: "Failed to delete note. Please try again.",
+        });
       });
-    });
+    }
   };
 
   return (
@@ -113,7 +131,6 @@ export const NoteList = ({ topic }: NoteListProps) => {
             label: "Update note",
             icon: <ModeEditIcon />,
             onClick: handleUpdateNoteOptionClick,
-            disabled: true,
           },
           {
             type: "error",
@@ -123,6 +140,13 @@ export const NoteList = ({ topic }: NoteListProps) => {
           },
         ]}
       />
+      {currentNote && (
+        <NoteUpdateModal
+          note={currentNote}
+          open={isModalOpen}
+          onClose={closeModal}
+        />
+      )}
     </Stack>
   );
 };
