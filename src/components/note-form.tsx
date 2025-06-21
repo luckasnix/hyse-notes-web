@@ -15,7 +15,7 @@ const formStyle: SxProps<Theme> = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 480,
   bgcolor: "background.paper",
   borderRadius: 1,
   boxShadow: 24,
@@ -78,7 +78,7 @@ export const NoteForm = ({
             size="small"
             fullWidth
             multiline
-            rows={2}
+            rows={4}
             label="Content"
             value={field.state.value}
             onChange={(event) => {
