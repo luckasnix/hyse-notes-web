@@ -27,6 +27,24 @@ export const addNote = async (
   }
 };
 
+export const updateNote = async (
+  newNote: Note,
+  onSuccess?: () => void,
+  onError?: () => void
+) => {
+  try {
+    const timestampInSeconds = getTimestampInSeconds();
+    const noteToUpdate: Note = {
+      ...newNote,
+      updatedAt: timestampInSeconds,
+    };
+    await localDb.notes.update(newNote.id, noteToUpdate);
+    onSuccess?.();
+  } catch {
+    onError?.();
+  }
+};
+
 export const deleteNote = async (
   currentNoteId: string | null,
   onSuccess?: () => void,
