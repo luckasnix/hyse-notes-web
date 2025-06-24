@@ -11,7 +11,7 @@ import { NotesSection } from "~/sections/notes-section";
 import { TopicsSection } from "~/sections/topics-section";
 
 const Home = () => {
-  const [topicId, setTopicId] = useQueryState("t");
+  const [topicId, setTopicId] = useQueryState("topicId");
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
