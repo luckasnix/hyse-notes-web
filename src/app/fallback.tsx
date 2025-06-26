@@ -8,7 +8,7 @@ export const containerStyle: SxProps<Theme> = {
   alignItems: "center",
 };
 
-export const Fallback = () => (
+export const FallbackPage = () => (
   <Grid container sx={containerStyle}>
     <CircularProgress size={80} />
   </Grid>

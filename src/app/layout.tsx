@@ -5,7 +5,7 @@ import { Suspense, type ReactNode } from "react";
 
 import { UiProvider } from "~/contexts/ui-context";
 
-import { Fallback } from "./fallback";
+import { FallbackPage } from "./fallback";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -28,7 +28,7 @@ const RootLayout = ({
     <body className={roboto.variable}>
       <NuqsAdapter>
         <UiProvider>
-          <Suspense fallback={<Fallback />}>{children}</Suspense>
+          <Suspense fallback={<FallbackPage />}>{children}</Suspense>
         </UiProvider>
       </NuqsAdapter>
     </body>

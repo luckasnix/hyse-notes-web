@@ -10,7 +10,7 @@ import { MainSection } from "~/sections/main-section";
 import { NotesSection } from "~/sections/notes-section";
 import { TopicsSection } from "~/sections/topics-section";
 
-const Home = () => {
+const HomePage = () => {
   const [topicId, setTopicId] = useQueryState("topicId");
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -51,4 +51,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
