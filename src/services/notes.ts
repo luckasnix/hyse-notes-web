@@ -8,7 +8,7 @@ export const addNote = async (
   noteContent: string,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   try {
     const noteId = nanoid(6);
     const timestampInSeconds = getTimestampInSeconds();
@@ -31,7 +31,7 @@ export const updateNote = async (
   newNote: Note,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   try {
     const timestampInSeconds = getTimestampInSeconds();
     const noteToUpdate: Note = {
@@ -49,7 +49,7 @@ export const deleteNote = async (
   currentNoteId: string | null,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   if (currentNoteId) {
     try {
       await localDb.notes.delete(currentNoteId);

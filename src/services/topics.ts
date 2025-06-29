@@ -8,7 +8,7 @@ export const addTopic = async (
   values: TopicValues,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   try {
     const topicId = nanoid(4);
     const timestampInSeconds = getTimestampInSeconds();
@@ -29,7 +29,7 @@ export const updateTopic = async (
   newTopic: Topic,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   try {
     const timestampInSeconds = getTimestampInSeconds();
     const topicToUpdate: Topic = {
@@ -47,7 +47,7 @@ export const deleteTopic = async (
   topicId: string,
   onSuccess?: () => void,
   onError?: () => void
-) => {
+): Promise<void> => {
   try {
     await localDb.topics.delete(topicId);
     await localDb.notes.where("topicId").equals(topicId).delete();
