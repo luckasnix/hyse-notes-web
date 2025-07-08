@@ -1,0 +1,88 @@
+import type { Topic } from "~/types/topics";
+
+export const topicsMock: Topic[] = [
+  {
+    id: "CDTV",
+    createdAt: 1746387127,
+    updatedAt: 1746387334,
+    title: "Things to do",
+    description: "Daily or weekly task list",
+  },
+  {
+    id: "-5M5",
+    createdAt: 1746387171,
+    updatedAt: 1746387349,
+    title: "Things to buy",
+    description: "Grocery items or general shopping",
+  },
+  {
+    id: "cZqH",
+    createdAt: 1746387199,
+    updatedAt: 1746387362,
+    title: "Creative ideas",
+    description: "Notes of ideas and inspirations",
+  },
+  {
+    id: "tmUm",
+    createdAt: 1746387214,
+    updatedAt: 1746387376,
+    title: "Movies to watch",
+    description: "Movie and series suggestions",
+  },
+  {
+    id: "dp5K",
+    createdAt: 1746387219,
+    updatedAt: 1746387392,
+    title: "Books to read",
+    description: "Future reading list",
+  },
+  {
+    id: "5Yas",
+    createdAt: 1746387241,
+    updatedAt: 1746387400,
+    title: "Personal goals",
+    description: "Short and long-term objectives",
+  },
+  {
+    id: "fQl0",
+    createdAt: 1746387259,
+    updatedAt: 1746387432,
+    title: "Ongoing projects",
+    description: "Tasks related to projects",
+  },
+  {
+    id: "zaiD",
+    createdAt: 1746387277,
+    updatedAt: 1746387465,
+    title: "Travel and places",
+    description: "Desired destinations and itineraries",
+  },
+  {
+    id: "Wmne",
+    createdAt: 1746387291,
+    updatedAt: 1746387591,
+    title: "Study notes",
+    description: "Summaries of subjects and topics",
+  },
+  {
+    id: "0Bp3",
+    createdAt: 1746387297,
+    updatedAt: 1746387605,
+    title: "Favorite recipes",
+    description: "Dishes to try or repeat",
+  },
+  {
+    id: "hKx8",
+    createdAt: 1746387313,
+    updatedAt: 1746387620,
+    title: "Passwords and logins",
+    description: "Manage securely",
+  },
+  {
+    id: "FHu7",
+    createdAt: 1746387322,
+    updatedAt: 1746387631,
+    title: "Event calendar",
+    description: "Appointments and important dates",
+  },
+];
