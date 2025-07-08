@@ -1,21 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
 
-export type Topic = {
-  id: string;
-  createdAt: number;
-  updatedAt: number;
-  title: string;
-  description: string;
-};
-
-export type Note = {
-  id: string;
-  createdAt: number;
-  updatedAt: number;
-  topicId: string;
-  content: string;
-  reactions: Array<string>;
-};
+import type { Note } from "~/types/notes";
+import type { Topic } from "~/types/topics";
 
 export const localDb = new Dexie("HyseNotes") as Dexie & {
   topics: EntityTable<Topic, "id">;

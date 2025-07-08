@@ -3,9 +3,9 @@ import Modal from "@mui/material/Modal";
 
 import { TopicForm } from "~/components/topic-form";
 import { useUi } from "~/contexts/ui-context";
-import type { Topic } from "~/database/local";
 import type { TopicValues } from "~/schemas/topics";
 import { updateTopic } from "~/services/topics";
+import type { Topic } from "~/types/topics";
 
 export type TopicUpdateModalProps = Readonly<{
   topic: Topic;

@@ -1,7 +1,8 @@
 import { nanoid } from "nanoid";
 
-import { localDb, type Note } from "~/database/local";
+import { localDb } from "~/database/local";
 import { getTimestampInSeconds } from "~/utils/general";
+import type { Note } from "~/types/notes";
 
 export const addNote = async (
   topicId: string,

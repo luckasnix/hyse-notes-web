@@ -8,8 +8,8 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import { useState, type ChangeEvent } from "react";
 
 import { useUi } from "~/contexts/ui-context";
-import type { Topic } from "~/database/local";
 import { addNote } from "~/services/notes";
+import type { Topic } from "~/types/topics";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,

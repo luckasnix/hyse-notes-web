@@ -13,8 +13,8 @@ import { useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
-import type { Topic } from "~/database/local";
 import { deleteTopic } from "~/services/topics";
+import type { Topic } from "~/types/topics";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,

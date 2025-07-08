@@ -6,8 +6,8 @@ import { useState } from "react";
 import { NoteInput } from "~/components/note-input";
 import { NoteList } from "~/components/note-list";
 import { TopicHeader } from "~/components/topic-header";
-import type { Topic } from "~/database/local";
 import { TopicUpdateModal } from "~/modals/topic-update-modal";
+import type { Topic } from "~/types/topics";
 
 const containerStyle: SxProps<Theme> = {
   height: "100dvh",

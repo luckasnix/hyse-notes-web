@@ -12,9 +12,10 @@ import { useMemo, useState, type MouseEvent } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
-import { localDb, type Topic } from "~/database/local";
+import { localDb } from "~/database/local";
 import { NoteUpdateModal } from "~/modals/note-update-modal";
 import { deleteNote } from "~/services/notes";
+import type { Topic } from "~/types/topics";
 import { convertTimestampToDate } from "~/utils/general";
 
 const containerStyle: SxProps<Theme> = {

@@ -1,4 +1,5 @@
-import type { Topic, Note } from "~/database/local";
+import type { Note } from "~/types/notes";
+import type { Topic } from "~/types/topics";
 
 export const notesMock: Note[] = [
   {
