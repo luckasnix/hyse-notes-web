@@ -31,7 +31,7 @@ export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
   };
 
   return (
-    <Grid size="grow" sx={containerStyle}>
+    <Grid component="section" size="grow" sx={containerStyle}>
       <TopicHeader topic={selectedTopic} openModal={openModal} />
       <NoteList topic={selectedTopic} />
       <NoteInput topic={selectedTopic} />
