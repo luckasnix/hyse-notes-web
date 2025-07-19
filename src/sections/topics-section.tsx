@@ -5,9 +5,9 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
+import type { SxProps, Theme } from "@mui/material/styles";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import type { SxProps, Theme } from "@mui/material/styles";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Fragment, type MouseEventHandler } from "react";
 
@@ -15,61 +15,61 @@ import { TopicItem } from "~/components/topic-item";
 import { localDb } from "~/database/local";
 
 const containerStyle: SxProps<Theme> = {
-  width: "100%",
-  maxWidth: 400,
-  height: "100dvh",
-  overflowY: "scroll",
+	width: "100%",
+	maxWidth: 400,
+	height: "100dvh",
+	overflowY: "scroll",
 };
 
 const headerStyle: SxProps<Theme> = {
-  direction: "row",
-  justifyContent: "space-between",
-  paddingX: 2,
-  paddingY: 1,
+	direction: "row",
+	justifyContent: "space-between",
+	paddingX: 2,
+	paddingY: 1,
 };
 
 export type TopicsSectionProps = Readonly<{
-  selectedTopicId: string | null;
-  selectTopic: (id: string) => void;
-  onAddTopicButtonClick: MouseEventHandler<HTMLButtonElement>;
+	selectedTopicId: string | null;
+	selectTopic: (id: string) => void;
+	onAddTopicButtonClick: MouseEventHandler<HTMLButtonElement>;
 }>;
 
 export const TopicsSection = ({
-  selectedTopicId,
-  selectTopic,
-  onAddTopicButtonClick,
+	selectedTopicId,
+	selectTopic,
+	onAddTopicButtonClick,
 }: TopicsSectionProps) => {
-  const topics = useLiveQuery(
-    () => {
-      return localDb.topics.orderBy("updatedAt").toArray();
-    },
-    [],
-    []
-  );
+	const topics = useLiveQuery(
+		() => {
+			return localDb.topics.orderBy("updatedAt").toArray();
+		},
+		[],
+		[],
+	);
 
-  return (
-    <Box component="section" sx={containerStyle}>
-      <Grid container sx={headerStyle}>
-        <Typography variant="h4">Topics</Typography>
-        <Tooltip title="Add topic" placement="bottom">
-          <IconButton onClick={onAddTopicButtonClick}>
-            <AddIcon />
-          </IconButton>
-        </Tooltip>
-      </Grid>
-      <List component="nav">
-        {topics.map(({ id, title, description }, index) => (
-          <Fragment key={id}>
-            <TopicItem
-              title={title}
-              description={description}
-              selected={selectedTopicId === id}
-              onClick={() => selectTopic(id)}
-            />
-            {topics.length !== index + 1 && <Divider variant="fullWidth" />}
-          </Fragment>
-        ))}
-      </List>
-    </Box>
-  );
+	return (
+		<Box component="section" sx={containerStyle}>
+			<Grid container sx={headerStyle}>
+				<Typography variant="h4">Topics</Typography>
+				<Tooltip title="Add topic" placement="bottom">
+					<IconButton onClick={onAddTopicButtonClick}>
+						<AddIcon />
+					</IconButton>
+				</Tooltip>
+			</Grid>
+			<List component="nav">
+				{topics.map(({ id, title, description }, index) => (
+					<Fragment key={id}>
+						<TopicItem
+							title={title}
+							description={description}
+							selected={selectedTopicId === id}
+							onClick={() => selectTopic(id)}
+						/>
+						{topics.length !== index + 1 && <Divider variant="fullWidth" />}
+					</Fragment>
+				))}
+			</List>
+		</Box>
+	);
 };
