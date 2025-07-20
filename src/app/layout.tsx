@@ -8,31 +8,31 @@ import { UiProvider } from "~/contexts/ui-context";
 import { FallbackPage } from "./fallback";
 
 const roboto = Roboto({
-	weight: ["300", "400", "500", "700"],
-	subsets: ["latin"],
-	display: "swap",
-	variable: "--font-roboto",
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
-	title: "Hyse Notes",
-	description: "Create and organize your notes",
+  title: "Hyse Notes",
+  description: "Create and organize your notes",
 };
 
 const RootLayout = ({
-	children,
+  children,
 }: Readonly<{
-	children: ReactNode;
+  children: ReactNode;
 }>) => (
-	<html lang="en">
-		<body className={roboto.variable}>
-			<NuqsAdapter>
-				<UiProvider>
-					<Suspense fallback={<FallbackPage />}>{children}</Suspense>
-				</UiProvider>
-			</NuqsAdapter>
-		</body>
-	</html>
+  <html lang="en">
+    <body className={roboto.variable}>
+      <NuqsAdapter>
+        <UiProvider>
+          <Suspense fallback={<FallbackPage />}>{children}</Suspense>
+        </UiProvider>
+      </NuqsAdapter>
+    </body>
+  </html>
 );
 
 export default RootLayout;

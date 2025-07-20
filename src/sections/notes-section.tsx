@@ -10,36 +10,36 @@ import { TopicUpdateModal } from "~/modals/topic-update-modal";
 import type { Topic } from "~/types/topics";
 
 const containerStyle: SxProps<Theme> = {
-	height: "100dvh",
-	display: "flex",
-	flexDirection: "column",
+  height: "100dvh",
+  display: "flex",
+  flexDirection: "column",
 };
 
 export type NotesSectionProps = Readonly<{
-	selectedTopic: Topic;
+  selectedTopic: Topic;
 }>;
 
 export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-	const openModal = () => {
-		setIsModalOpen(true);
-	};
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-	const closeModal = () => {
-		setIsModalOpen(false);
-	};
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-	return (
-		<Grid component="section" size="grow" sx={containerStyle}>
-			<TopicHeader topic={selectedTopic} openModal={openModal} />
-			<NoteList topic={selectedTopic} />
-			<NoteInput topic={selectedTopic} />
-			<TopicUpdateModal
-				topic={selectedTopic}
-				open={isModalOpen}
-				onClose={closeModal}
-			/>
-		</Grid>
-	);
+  return (
+    <Grid component="section" size="grow" sx={containerStyle}>
+      <TopicHeader topic={selectedTopic} openModal={openModal} />
+      <NoteList topic={selectedTopic} />
+      <NoteInput topic={selectedTopic} />
+      <TopicUpdateModal
+        topic={selectedTopic}
+        open={isModalOpen}
+        onClose={closeModal}
+      />
+    </Grid>
+  );
 };

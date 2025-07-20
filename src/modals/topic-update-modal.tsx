@@ -8,43 +8,43 @@ import { updateTopic } from "~/services/topics";
 import type { Topic } from "~/types/topics";
 
 export type TopicUpdateModalProps = Readonly<{
-	topic: Topic;
-	open: boolean;
-	onClose: () => void;
+  topic: Topic;
+  open: boolean;
+  onClose: () => void;
 }>;
 
 export const TopicUpdateModal = ({
-	topic,
-	open,
-	onClose,
+  topic,
+  open,
+  onClose,
 }: TopicUpdateModalProps) => {
-	const { showToast } = useUi();
+  const { showToast } = useUi();
 
-	const handleSubmit = (values: TopicValues) => {
-		const newTopic: Topic = {
-			...topic,
-			...values,
-		};
-		updateTopic(newTopic, undefined, () => {
-			showToast({
-				severity: "error",
-				message: "Failed to update topic. Please try again.",
-			});
-		});
-	};
+  const handleSubmit = (values: TopicValues) => {
+    const newTopic: Topic = {
+      ...topic,
+      ...values,
+    };
+    updateTopic(newTopic, undefined, () => {
+      showToast({
+        severity: "error",
+        message: "Failed to update topic. Please try again.",
+      });
+    });
+  };
 
-	return (
-		<Modal open={open} onClose={onClose}>
-			<TopicForm
-				title="Update topic"
-				labels={{ submit: "Update", cancel: "Cancel" }}
-				initialValues={{
-					title: topic.title,
-					description: topic.description,
-				}}
-				onCancel={onClose}
-				onSubmit={handleSubmit}
-			/>
-		</Modal>
-	);
+  return (
+    <Modal open={open} onClose={onClose}>
+      <TopicForm
+        title="Update topic"
+        labels={{ submit: "Update", cancel: "Cancel" }}
+        initialValues={{
+          title: topic.title,
+          description: topic.description,
+        }}
+        onCancel={onClose}
+        onSubmit={handleSubmit}
+      />
+    </Modal>
+  );
 };

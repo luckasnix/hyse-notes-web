@@ -7,37 +7,37 @@ import type { TopicValues } from "~/schemas/topics";
 import { addTopic } from "~/services/topics";
 
 export type TopicAdditionModalProps = Readonly<{
-	open: boolean;
-	onClose: () => void;
+  open: boolean;
+  onClose: () => void;
 }>;
 
 export const TopicAdditionModal = ({
-	open,
-	onClose,
+  open,
+  onClose,
 }: TopicAdditionModalProps) => {
-	const { showToast } = useUi();
+  const { showToast } = useUi();
 
-	const handleSubmit = (values: TopicValues) => {
-		addTopic(values, undefined, () => {
-			showToast({
-				severity: "error",
-				message: "Failed to add topic. Please try again.",
-			});
-		});
-	};
+  const handleSubmit = (values: TopicValues) => {
+    addTopic(values, undefined, () => {
+      showToast({
+        severity: "error",
+        message: "Failed to add topic. Please try again.",
+      });
+    });
+  };
 
-	return (
-		<Modal open={open} onClose={onClose}>
-			<TopicForm
-				title="Add topic"
-				labels={{ submit: "Add", cancel: "Cancel" }}
-				initialValues={{
-					title: "",
-					description: "",
-				}}
-				onCancel={onClose}
-				onSubmit={handleSubmit}
-			/>
-		</Modal>
-	);
+  return (
+    <Modal open={open} onClose={onClose}>
+      <TopicForm
+        title="Add topic"
+        labels={{ submit: "Add", cancel: "Cancel" }}
+        initialValues={{
+          title: "",
+          description: "",
+        }}
+        onCancel={onClose}
+        onSubmit={handleSubmit}
+      />
+    </Modal>
+  );
 };
