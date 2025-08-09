@@ -13,6 +13,7 @@ import { type MouseEvent, useState } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
+import { ConfirmationModal } from "~/modals/confirmation-modal";
 import { deleteTopic } from "~/services/topics";
 import type { Topic } from "~/types/topics";
 
@@ -45,6 +46,8 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
   const router = useRouter();
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
+    useState<boolean>(false);
   const open = Boolean(anchorEl);
 
   const openMenu = (event: MouseEvent<HTMLButtonElement>) => {
@@ -60,10 +63,24 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
     closeMenu();
   };
 
+  const openConfirmationModal = () => {
+    setIsConfirmationModalOpen(true);
+  };
+
+  const closeConfirmationModal = () => {
+    setIsConfirmationModalOpen(false);
+  };
+
   const handleDeleteTopicOptionClick = () => {
+    closeMenu();
+    openConfirmationModal();
+  };
+
+  const handleTopicDeletionConfirmation = () => {
     deleteTopic(
       topic.id,
       () => {
+        closeConfirmationModal();
         router.push("/");
       },
       () => {
@@ -118,6 +135,16 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
             onClick: handleDeleteTopicOptionClick,
           },
         ]}
+      />
+      <ConfirmationModal
+        open={isConfirmationModalOpen}
+        content="Are you sure you want to delete this topic?"
+        labels={{
+          cancel: "Cancel",
+          confirm: "Delete",
+        }}
+        onCancel={closeConfirmationModal}
+        onConfirm={handleTopicDeletionConfirmation}
       />
     </Stack>
   );
