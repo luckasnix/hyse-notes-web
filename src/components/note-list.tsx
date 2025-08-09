@@ -13,6 +13,7 @@ import { type MouseEvent, useMemo, useState } from "react";
 import { ActionMenu } from "~/components/action-menu";
 import { useUi } from "~/contexts/ui-context";
 import { localDb } from "~/database/local";
+import { ConfirmationModal } from "~/modals/confirmation-modal";
 import { NoteUpdateModal } from "~/modals/note-update-modal";
 import { deleteNote } from "~/services/notes";
 import type { Topic } from "~/types/topics";
@@ -39,7 +40,10 @@ export type NoteListProps = Readonly<{
 export const NoteList = ({ topic }: NoteListProps) => {
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
+    useState<boolean>(false);
+  const [isNoteUpdateModalOpen, setIsNoteUpdateModalOpen] =
+    useState<boolean>(false);
   const [currentNoteId, setCurrentNoteId] = useState<string | null>(null);
   const open = Boolean(anchorEl);
 
@@ -68,22 +72,35 @@ export const NoteList = ({ topic }: NoteListProps) => {
     setAnchorEl(null);
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openNoteUpdateModal = () => {
+    setIsNoteUpdateModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeNoteUpdateModal = () => {
+    setIsNoteUpdateModalOpen(false);
+  };
+
+  const openConfirmationModal = () => {
+    setIsConfirmationModalOpen(true);
+  };
+
+  const closeConfirmationModal = () => {
+    setIsConfirmationModalOpen(false);
   };
 
   const handleUpdateNoteOptionClick = () => {
-    openModal();
+    openNoteUpdateModal();
     closeMenu();
   };
 
   const handleDeleteNoteOptionClick = () => {
+    closeMenu();
+    openConfirmationModal();
+  };
+
+  const handleNoteDeletionConfirmation = () => {
     if (currentNoteId) {
-      deleteNote(currentNoteId, closeMenu, () => {
+      deleteNote(currentNoteId, closeConfirmationModal, () => {
         showToast({
           severity: "error",
           message: "Failed to delete note. Please try again.",
@@ -141,11 +158,21 @@ export const NoteList = ({ topic }: NoteListProps) => {
           },
         ]}
       />
+      <ConfirmationModal
+        open={isConfirmationModalOpen}
+        content="Are you sure you want to delete this note?"
+        labels={{
+          cancel: "Cancel",
+          confirm: "Delete",
+        }}
+        onCancel={closeConfirmationModal}
+        onConfirm={handleNoteDeletionConfirmation}
+      />
       {currentNote && (
         <NoteUpdateModal
           note={currentNote}
-          open={isModalOpen}
-          onClose={closeModal}
+          open={isNoteUpdateModalOpen}
+          onClose={closeNoteUpdateModal}
         />
       )}
     </Stack>
