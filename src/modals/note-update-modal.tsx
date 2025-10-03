@@ -1,4 +1,3 @@
-"use client";
 import Modal from "@mui/material/Modal";
 
 import { NoteForm } from "~/components/note-form";

@@ -1,5 +1,5 @@
-"use client";
 import Grid from "@mui/material/Grid";
+import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
@@ -51,4 +51,6 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export const Route = createFileRoute("/")({
+  component: HomePage,
+});

@@ -1,4 +1,3 @@
-"use client";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -8,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "@tanstack/react-router";
 import { type MouseEvent, useState } from "react";
 
 import { ActionMenu } from "~/components/action-menu";
@@ -43,7 +42,7 @@ export type TopicHeaderProps = Readonly<{
 }>;
 
 export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const { showToast } = useUi();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
@@ -81,7 +80,7 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
       topic.id,
       () => {
         closeConfirmationModal();
-        router.push("/");
+        navigate({ to: "/" });
       },
       () => {
         showToast({

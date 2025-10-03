@@ -1,4 +1,3 @@
-"use client";
 import Modal from "@mui/material/Modal";
 
 import { TopicForm } from "~/components/topic-form";

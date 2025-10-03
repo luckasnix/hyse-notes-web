@@ -1,4 +1,3 @@
-"use client";
 import Grid from "@mui/material/Grid";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { useState } from "react";

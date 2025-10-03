@@ -1,7 +1,7 @@
-"use client";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import {
   createContext,
   type ReactNode,
@@ -20,6 +20,8 @@ export type UiContextValue = {
 export type UiProviderProps = Readonly<{
   children: ReactNode;
 }>;
+
+const emotionCache = createCache({ key: "css" });
 
 export const UiContext = createContext<UiContextValue | null>(null);
 
@@ -48,13 +50,13 @@ export const UiProvider = ({ children }: UiProviderProps) => {
 
   return (
     <UiContext.Provider value={{ showToast }}>
-      <AppRouterCacheProvider>
+      <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {children}
           <Toast {...toast} onClose={closeToast} />
         </ThemeProvider>
-      </AppRouterCacheProvider>
+      </CacheProvider>
     </UiContext.Provider>
   );
 };
