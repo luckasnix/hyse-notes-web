@@ -4,8 +4,8 @@ import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 import { type ReactNode, Suspense } from "react";
 
 import { UiProvider } from "~/contexts/ui-context";
-import { FallbackPage } from "~/pages/fallback";
-import { NotFound } from "~/pages/not-found";
+import { FallbackPage } from "~/pages/fallback-page";
+import { NotFoundPage } from "~/pages/not-found-page";
 
 const RootDocument = ({ children }: { children: ReactNode }) => (
   <html lang="en">
@@ -69,6 +69,6 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  notFoundComponent: NotFound,
+  notFoundComponent: NotFoundPage,
   shellComponent: RootDocument,
 });
