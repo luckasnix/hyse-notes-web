@@ -30,6 +30,11 @@ const avatarStyle: SxProps<Theme> = {
   bgcolor: "primary.main",
 };
 
+const contentContainerStyle: SxProps<Theme> = {
+  flex: 1,
+  minWidth: 0,
+};
+
 const textStyle: SxProps<Theme> = {
   maxWidth: "100%",
   overflow: "hidden",
@@ -96,17 +101,15 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
       <Avatar variant="rounded" sx={avatarStyle}>
         {topic.title.at(0)?.toUpperCase()}
       </Avatar>
-      <Box sx={{ flex: 1, minWidth: 0 }}>
+      <Box sx={contentContainerStyle}>
         <Typography variant="h6" component="h2" noWrap sx={textStyle}>
           {topic.title}
         </Typography>
         <Typography
           variant="body2"
           noWrap
-          sx={{
-            ...textStyle,
-            color: "text.secondary",
-          }}
+          color="text.secondary"
+          sx={textStyle}
         >
           {topic.description}
         </Typography>

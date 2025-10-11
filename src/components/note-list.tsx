@@ -27,9 +27,13 @@ const containerStyle: SxProps<Theme> = {
 
 const noteContainerStyle: SxProps<Theme> = {
   padding: 2,
-  bgcolor: "background.paper",
+  backgroundColor: "background.paper",
   borderRadius: 1,
   boxShadow: 2,
+};
+
+const textContainerStyle: SxProps<Theme> = {
+  flex: 1,
 };
 
 export type NoteListProps = Readonly<{
@@ -113,7 +117,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
       {notes.map(({ id, content, createdAt }) => (
         <Stack key={id} spacing={1} sx={noteContainerStyle}>
           <Stack direction="row" spacing={1}>
-            <Box sx={{ flex: 1 }}>
+            <Box sx={textContainerStyle}>
               <Typography variant="body1" whiteSpace="pre-wrap">
                 {content}
               </Typography>
@@ -130,7 +134,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
             </Box>
           </Stack>
           <Stack direction="row" spacing={1}>
-            <Box sx={{ flex: 1 }}>
+            <Box sx={textContainerStyle}>
               <Typography variant="caption" color="text.secondary">
                 {convertTimestampToDate(createdAt)}
               </Typography>

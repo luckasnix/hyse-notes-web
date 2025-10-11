@@ -14,10 +14,14 @@ const contentStyle: SxProps<Theme> = {
   bgcolor: "background.paper",
   borderRadius: 1,
   boxShadow: 24,
-  p: 4,
+  padding: 4,
   display: "flex",
   flexDirection: "column",
   gap: 1,
+};
+
+const actionsStyle: SxProps<Theme> = {
+  justifyContent: "end",
 };
 
 export type ConfirmationModalProps = Readonly<{
@@ -41,7 +45,7 @@ export const ConfirmationModal = ({
   <Modal open={open} onClose={onCancel}>
     <Box sx={contentStyle}>
       <Typography variant="body1">{content}</Typography>
-      <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
+      <Stack direction="row" spacing={1} sx={actionsStyle}>
         <Button variant="outlined" size="small" onClick={onCancel}>
           {labels.cancel}
         </Button>

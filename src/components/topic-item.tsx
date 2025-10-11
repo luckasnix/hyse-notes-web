@@ -5,13 +5,14 @@ import ListItemText from "@mui/material/ListItemText";
 import type { SxProps, Theme } from "@mui/material/styles";
 
 const avatarStyle: SxProps<Theme> = {
-  bgcolor: "primary.main",
+  backgroundColor: "primary.main",
 };
 
 const textStyle: SxProps<Theme> = {
   maxWidth: "100%",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 };
 
 export type TopicItemProps = Readonly<{
@@ -38,11 +39,9 @@ export const TopicItem = ({
       secondary={description}
       slotProps={{
         primary: {
-          noWrap: true,
           sx: textStyle,
         },
         secondary: {
-          noWrap: true,
           sx: textStyle,
         },
       }}
