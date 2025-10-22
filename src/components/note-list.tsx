@@ -47,7 +47,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
     useState<boolean>(false);
   const [isNoteUpdateModalOpen, setIsNoteUpdateModalOpen] =
     useState<boolean>(false);
-  const [currentNoteId, setCurrentNoteId] = useState<string | null>(null);
+  const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
   const open = Boolean(anchorEl);
 
   const notes = useLiveQuery(
@@ -62,13 +62,13 @@ export const NoteList = ({ topic }: NoteListProps) => {
     [],
   );
 
-  const currentNote = useMemo(() => {
-    return notes.find(({ id }) => id === currentNoteId);
-  }, [notes, currentNoteId]);
+  const selectedNote = useMemo(() => {
+    return notes.find((currentNote) => currentNote.id === selectedNoteId);
+  }, [notes, selectedNoteId]);
 
   const openMenu = (event: MouseEvent<HTMLButtonElement>, noteId: string) => {
     setAnchorEl(event.currentTarget);
-    setCurrentNoteId(noteId);
+    setSelectedNoteId(noteId);
   };
 
   const closeMenu = () => {
@@ -102,8 +102,8 @@ export const NoteList = ({ topic }: NoteListProps) => {
   };
 
   const handleNoteDeletionConfirmation = () => {
-    if (currentNoteId) {
-      deleteNote(currentNoteId, closeConfirmationModal, () => {
+    if (selectedNoteId) {
+      deleteNote(selectedNoteId, closeConfirmationModal, () => {
         showToast({
           severity: "error",
           message: "Failed to delete note. Please try again.",
@@ -114,19 +114,19 @@ export const NoteList = ({ topic }: NoteListProps) => {
 
   return (
     <Stack direction="column-reverse" spacing={2} sx={containerStyle}>
-      {notes.map(({ id, content, createdAt }) => (
-        <Stack key={id} spacing={1} sx={noteContainerStyle}>
+      {notes.map((note) => (
+        <Stack key={note.id} spacing={1} sx={noteContainerStyle}>
           <Stack direction="row" spacing={1}>
             <Box sx={textContainerStyle}>
               <Typography variant="body1" whiteSpace="pre-wrap">
-                {content}
+                {note.content}
               </Typography>
             </Box>
             <Box>
               <IconButton
                 size="small"
                 onClick={(event) => {
-                  openMenu(event, id);
+                  openMenu(event, note.id);
                 }}
               >
                 <MoreVertIcon />
@@ -136,7 +136,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
           <Stack direction="row" spacing={1}>
             <Box sx={textContainerStyle}>
               <Typography variant="caption" color="text.secondary">
-                {convertTimestampToDate(createdAt)}
+                {convertTimestampToDate(note.createdAt)}
               </Typography>
             </Box>
           </Stack>
@@ -171,9 +171,9 @@ export const NoteList = ({ topic }: NoteListProps) => {
         onCancel={closeConfirmationModal}
         onConfirm={handleNoteDeletionConfirmation}
       />
-      {currentNote && (
+      {selectedNote && (
         <NoteUpdateModal
-          note={currentNote}
+          note={selectedNote}
           open={isNoteUpdateModalOpen}
           onClose={closeNoteUpdateModal}
         />

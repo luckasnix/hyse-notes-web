@@ -61,15 +61,17 @@ export const ActionMenu = ({
       horizontal: "right",
     }}
   >
-    {items.map(({ type, label, icon, disabled, onClick }) => (
+    {items.map((item) => (
       <MenuItem
-        key={label}
-        onClick={onClick}
-        disabled={disabled}
-        sx={menuItemStyleMap[type]}
+        key={item.label}
+        onClick={item.onClick}
+        disabled={item.disabled}
+        sx={menuItemStyleMap[item.type]}
       >
-        <ListItemIcon sx={listItemIconStyleMap[type]}>{icon}</ListItemIcon>
-        <ListItemText>{label}</ListItemText>
+        <ListItemIcon sx={listItemIconStyleMap[item.type]}>
+          {item.icon}
+        </ListItemIcon>
+        <ListItemText>{item.label}</ListItemText>
       </MenuItem>
     ))}
   </Menu>

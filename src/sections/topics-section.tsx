@@ -55,14 +55,14 @@ export const TopicsSection = ({
             Add topic
           </Button>
         </ListSubheader>
-        {topics.map(({ id, title, description }, index) => (
-          <Fragment key={id}>
+        {topics.map((topic, index) => (
+          <Fragment key={topic.id}>
             <TopicItem
-              title={title}
-              description={description}
-              selected={selectedTopicId === id}
+              title={topic.title}
+              description={topic.description}
+              selected={selectedTopicId === topic.id}
               onClick={() => {
-                selectTopic(id);
+                selectTopic(topic.id);
               }}
             />
             {topics.length !== index + 1 && <Divider variant="fullWidth" />}
