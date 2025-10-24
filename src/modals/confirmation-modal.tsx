@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
+// TODO: Avoid repeated styles across components
 const contentStyle: SxProps<Theme> = {
   position: "absolute",
   top: "50%",

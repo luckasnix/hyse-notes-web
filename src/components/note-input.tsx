@@ -22,6 +22,7 @@ export type NoteInputProps = Readonly<{
   topic: Topic;
 }>;
 
+// TODO: Enable Markdown notes
 export const NoteInput = ({ topic }: NoteInputProps) => {
   const { showToast } = useUi();
   const [content, setContent] = useState("");

@@ -8,6 +8,7 @@ import { FallbackPage } from "~/pages/fallback-page";
 import { NotFoundPage } from "~/pages/not-found-page";
 
 const RootDocument = ({ children }: { children: ReactNode }) => (
+  // TODO: Add internationalization with American English and Brazilian Portuguese
   <html lang="en">
     <head>
       <HeadContent />

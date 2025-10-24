@@ -33,6 +33,7 @@ export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
     <Grid component="section" size="grow" sx={containerStyle}>
       <TopicHeader topic={selectedTopic} openModal={openModal} />
       <NoteList topic={selectedTopic} />
+      {/* TODO: Make React distinguish note inputs from different topics (perhaps using the "key" prop) */}
       <NoteInput topic={selectedTopic} />
       <TopicUpdateModal
         topic={selectedTopic}

@@ -115,6 +115,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
   return (
     <Stack direction="column-reverse" spacing={2} sx={containerStyle}>
       {notes.map((note) => (
+        // TODO: Enable user reactions
         <Stack key={note.id} spacing={1} sx={noteContainerStyle}>
           <Stack direction="row" spacing={1}>
             <Box sx={textContainerStyle}>
