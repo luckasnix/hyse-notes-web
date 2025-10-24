@@ -16,7 +16,7 @@ const formStyle: SxProps<Theme> = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 480,
-  bgcolor: "background.paper",
+  backgroundColor: "background.paper",
   borderRadius: 1,
   boxShadow: 24,
   padding: 4,

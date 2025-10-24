@@ -27,7 +27,7 @@ const containerStyle: SxProps<Theme> = {
 const avatarStyle: SxProps<Theme> = {
   width: 56,
   height: 56,
-  bgcolor: "primary.main",
+  backgroundColor: "primary.main",
 };
 
 const contentContainerStyle: SxProps<Theme> = {
