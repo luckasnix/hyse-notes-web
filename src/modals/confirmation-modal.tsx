@@ -4,21 +4,11 @@ import Modal from "@mui/material/Modal";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { modalContentStyle } from "~/styles/common";
 
-// TODO: Avoid repeated styles across components
 const contentStyle: SxProps<Theme> = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  ...modalContentStyle,
   width: 360,
-  backgroundColor: "background.paper",
-  borderRadius: 1,
-  boxShadow: 24,
-  padding: 4,
-  display: "flex",
-  flexDirection: "column",
-  gap: 1,
 };
 
 const actionsStyle: SxProps<Theme> = {

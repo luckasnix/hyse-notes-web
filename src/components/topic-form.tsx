@@ -8,21 +8,11 @@ import { useForm } from "@tanstack/react-form";
 import type { FormEventHandler } from "react";
 
 import { type TopicValues, topicSchema } from "~/schemas/topics";
+import { modalContentStyle } from "~/styles/common";
 
-// TODO: Avoid repeated styles across components
-const formStyle: SxProps<Theme> = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+const contentStyle: SxProps<Theme> = {
+  ...modalContentStyle,
   width: 480,
-  backgroundColor: "background.paper",
-  borderRadius: 1,
-  boxShadow: 24,
-  padding: 4,
-  display: "flex",
-  flexDirection: "column",
-  gap: 1,
 };
 
 const actionsStyle: SxProps<Theme> = {
@@ -72,7 +62,7 @@ export const TopicForm = ({
       component="form"
       autoComplete="off"
       onSubmit={handleSubmit}
-      sx={formStyle}
+      sx={contentStyle}
     >
       <Typography variant="h6">{title}</Typography>
       <form.Field name="title">
