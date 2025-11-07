@@ -1,6 +1,5 @@
 import fontsourceVariableNotoSansCss from "@fontsource-variable/noto-sans?url";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 import { type ReactNode, Suspense } from "react";
 
 import { UiProvider } from "~/contexts/ui-context";
@@ -14,11 +13,9 @@ const RootDocument = ({ children }: { children: ReactNode }) => (
       <HeadContent />
     </head>
     <body>
-      <NuqsAdapter>
-        <UiProvider>
-          <Suspense fallback={<FallbackPage />}>{children}</Suspense>
-        </UiProvider>
-      </NuqsAdapter>
+      <UiProvider>
+        <Suspense fallback={<FallbackPage />}>{children}</Suspense>
+      </UiProvider>
       <Scripts />
     </body>
   </html>

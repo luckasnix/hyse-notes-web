@@ -9,50 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char123TopicIdChar125RouteImport } from './routes/{-$topicId}'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const Char123TopicIdChar125Route = Char123TopicIdChar125RouteImport.update({
+  id: '/{-$topicId}',
+  path: '/{-$topicId}',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/{-$topicId}': typeof Char123TopicIdChar125Route
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/{-$topicId}': typeof Char123TopicIdChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/{-$topicId}': typeof Char123TopicIdChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/{-$topicId}'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/{-$topicId}'
+  id: '__root__' | '/{-$topicId}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  Char123TopicIdChar125Route: typeof Char123TopicIdChar125Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/{-$topicId}': {
+      id: '/{-$topicId}'
+      path: '/{-$topicId}'
+      fullPath: '/{-$topicId}'
+      preLoaderRoute: typeof Char123TopicIdChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  Char123TopicIdChar125Route: Char123TopicIdChar125Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

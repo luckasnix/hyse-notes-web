@@ -1,7 +1,6 @@
 import Grid from "@mui/material/Grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
-import { useQueryState } from "nuqs";
 import { useState } from "react";
 
 import { localDb } from "~/database/local";
@@ -11,7 +10,9 @@ import { NotesSection } from "~/sections/notes-section";
 import { TopicsSection } from "~/sections/topics-section";
 
 const HomeRoute = () => {
-  const [topicId, setTopicId] = useQueryState("topicId");
+  const { topicId } = Route.useParams();
+
+  const navigate = Route.useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -23,7 +24,10 @@ const HomeRoute = () => {
   }, [topicId]);
 
   const selectTopic = (id: string) => {
-    setTopicId(id);
+    navigate({
+      to: "/{-$topicId}",
+      params: { topicId: id },
+    });
   };
 
   const openModal = () => {
@@ -51,6 +55,6 @@ const HomeRoute = () => {
   );
 };
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/{-$topicId}")({
   component: HomeRoute,
 });

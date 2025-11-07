@@ -13,7 +13,7 @@ import { localDb } from "~/database/local";
 
 const containerStyle: SxProps<Theme> = {
   width: "100%",
-  maxWidth: 400,
+  maxWidth: "400px",
   height: "100dvh",
   overflowY: "scroll",
 };
@@ -23,7 +23,7 @@ const navStyle: SxProps<Theme> = {
 };
 
 export type TopicsSectionProps = Readonly<{
-  selectedTopicId: string | null;
+  selectedTopicId: string | undefined;
   selectTopic: (id: string) => void;
   onAddTopicButtonClick: MouseEventHandler<HTMLButtonElement>;
 }>;
