@@ -9,7 +9,7 @@ import { MainSection } from "~/sections/main-section";
 import { NotesSection } from "~/sections/notes-section";
 import { TopicsSection } from "~/sections/topics-section";
 
-const HomeRoute = () => {
+const TopicsRoute = () => {
   const { topicId } = Route.useParams();
 
   const navigate = Route.useNavigate();
@@ -25,7 +25,7 @@ const HomeRoute = () => {
 
   const selectTopic = (id: string) => {
     navigate({
-      to: "/{-$topicId}",
+      to: "/topics/{-$topicId}",
       params: { topicId: id },
     });
   };
@@ -55,6 +55,6 @@ const HomeRoute = () => {
   );
 };
 
-export const Route = createFileRoute("/{-$topicId}")({
-  component: HomeRoute,
+export const Route = createFileRoute("/topics/{-$topicId}")({
+  component: TopicsRoute,
 });

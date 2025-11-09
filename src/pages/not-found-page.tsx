@@ -30,7 +30,7 @@ export const NotFoundPage = () => {
         variant="contained"
         startIcon={<HomeIcon />}
         onClick={() => {
-          navigate({ to: "/{-$topicId}" });
+          navigate({ to: "/topics/{-$topicId}" });
         }}
       >
         Back to home

@@ -85,7 +85,7 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
       topic.id,
       () => {
         closeConfirmationModal();
-        navigate({ to: "/{-$topicId}" });
+        navigate({ to: "/topics/{-$topicId}" });
       },
       () => {
         showToast({

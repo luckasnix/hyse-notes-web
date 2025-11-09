@@ -9,50 +9,69 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as Char123TopicIdChar125RouteImport } from './routes/{-$topicId}'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as TopicsChar123TopicIdChar125RouteImport } from './routes/topics.{-$topicId}'
 
-const Char123TopicIdChar125Route = Char123TopicIdChar125RouteImport.update({
-  id: '/{-$topicId}',
-  path: '/{-$topicId}',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicsChar123TopicIdChar125Route =
+  TopicsChar123TopicIdChar125RouteImport.update({
+    id: '/topics/{-$topicId}',
+    path: '/topics/{-$topicId}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$topicId}': typeof Char123TopicIdChar125Route
+  '/': typeof IndexRoute
+  '/topics/{-$topicId}': typeof TopicsChar123TopicIdChar125Route
 }
 export interface FileRoutesByTo {
-  '/{-$topicId}': typeof Char123TopicIdChar125Route
+  '/': typeof IndexRoute
+  '/topics/{-$topicId}': typeof TopicsChar123TopicIdChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/{-$topicId}': typeof Char123TopicIdChar125Route
+  '/': typeof IndexRoute
+  '/topics/{-$topicId}': typeof TopicsChar123TopicIdChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/{-$topicId}'
+  fullPaths: '/' | '/topics/{-$topicId}'
   fileRoutesByTo: FileRoutesByTo
-  to: '/{-$topicId}'
-  id: '__root__' | '/{-$topicId}'
+  to: '/' | '/topics/{-$topicId}'
+  id: '__root__' | '/' | '/topics/{-$topicId}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  Char123TopicIdChar125Route: typeof Char123TopicIdChar125Route
+  IndexRoute: typeof IndexRoute
+  TopicsChar123TopicIdChar125Route: typeof TopicsChar123TopicIdChar125Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/{-$topicId}': {
-      id: '/{-$topicId}'
-      path: '/{-$topicId}'
-      fullPath: '/{-$topicId}'
-      preLoaderRoute: typeof Char123TopicIdChar125RouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/topics/{-$topicId}': {
+      id: '/topics/{-$topicId}'
+      path: '/topics/{-$topicId}'
+      fullPath: '/topics/{-$topicId}'
+      preLoaderRoute: typeof TopicsChar123TopicIdChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  Char123TopicIdChar125Route: Char123TopicIdChar125Route,
+  IndexRoute: IndexRoute,
+  TopicsChar123TopicIdChar125Route: TopicsChar123TopicIdChar125Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
