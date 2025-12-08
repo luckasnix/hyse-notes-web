@@ -1,10 +1,10 @@
 import Modal from "@mui/material/Modal";
 
-import { NoteForm } from "~/components/note-form";
-import { useUi } from "~/contexts/ui-context";
-import type { NoteValues } from "~/schemas/notes";
-import { updateNote } from "~/services/notes";
-import type { Note } from "~/types/notes";
+import { NoteForm } from "#/components/note-form";
+import { useUi } from "#/contexts/ui-context";
+import type { NoteValues } from "#/schemas/notes";
+import { updateNote } from "#/services/notes";
+import type { Note } from "#/types/notes";
 
 export type NoteUpdateModalProps = Readonly<{
   note: Note;

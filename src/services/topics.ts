@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
 
-import { localDb } from "~/database/local";
-import type { TopicValues } from "~/schemas/topics";
-import type { Topic } from "~/types/topics";
-import { getTimestampInSeconds } from "~/utils/general";
+import { localDb } from "#/database/local";
+import type { TopicValues } from "#/schemas/topics";
+import type { Topic } from "#/types/topics";
+import { getTimestampInSeconds } from "#/utils/general";
 
 export const addTopic = async (
   values: TopicValues,

@@ -1,9 +1,9 @@
 import Modal from "@mui/material/Modal";
 
-import { TopicForm } from "~/components/topic-form";
-import { useUi } from "~/contexts/ui-context";
-import type { TopicValues } from "~/schemas/topics";
-import { addTopic } from "~/services/topics";
+import { TopicForm } from "#/components/topic-form";
+import { useUi } from "#/contexts/ui-context";
+import type { TopicValues } from "#/schemas/topics";
+import { addTopic } from "#/services/topics";
 
 export type TopicAdditionModalProps = Readonly<{
   open: boolean;

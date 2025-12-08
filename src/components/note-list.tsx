@@ -9,14 +9,14 @@ import Typography from "@mui/material/Typography";
 import { useLiveQuery } from "dexie-react-hooks";
 import { type MouseEvent, useMemo, useState } from "react";
 
-import { ActionMenu } from "~/components/action-menu";
-import { useUi } from "~/contexts/ui-context";
-import { localDb } from "~/database/local";
-import { ConfirmationModal } from "~/modals/confirmation-modal";
-import { NoteUpdateModal } from "~/modals/note-update-modal";
-import { deleteNote } from "~/services/notes";
-import type { Topic } from "~/types/topics";
-import { convertTimestampToDate } from "~/utils/general";
+import { ActionMenu } from "#/components/action-menu";
+import { useUi } from "#/contexts/ui-context";
+import { localDb } from "#/database/local";
+import { ConfirmationModal } from "#/modals/confirmation-modal";
+import { NoteUpdateModal } from "#/modals/note-update-modal";
+import { deleteNote } from "#/services/notes";
+import type { Topic } from "#/types/topics";
+import { convertTimestampToDate } from "#/utils/general";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 6,

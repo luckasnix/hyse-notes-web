@@ -1,4 +1,4 @@
-import type { Topic } from "~/types/topics";
+import type { Topic } from "#/types/topics";
 
 export const topicsMock: Topic[] = [
   {

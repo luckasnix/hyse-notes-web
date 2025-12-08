@@ -7,8 +7,8 @@ import Typography from "@mui/material/Typography";
 import { useForm } from "@tanstack/react-form";
 import type { FormEventHandler } from "react";
 
-import { type NoteValues, noteSchema } from "~/schemas/notes";
-import { modalContentStyle } from "~/styles/common";
+import { type NoteValues, noteSchema } from "#/schemas/notes";
+import { modalContentStyle } from "#/styles/common";
 
 const contentStyle: SxProps<Theme> = {
   ...modalContentStyle,

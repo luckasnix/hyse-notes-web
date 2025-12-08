@@ -8,8 +8,8 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Fragment, type MouseEventHandler } from "react";
 
-import { TopicItem } from "~/components/topic-item";
-import { localDb } from "~/database/local";
+import { TopicItem } from "#/components/topic-item";
+import { localDb } from "#/database/local";
 
 const containerStyle: SxProps<Theme> = {
   width: "100%",

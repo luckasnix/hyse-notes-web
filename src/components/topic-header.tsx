@@ -10,11 +10,11 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "@tanstack/react-router";
 import { type MouseEvent, useState } from "react";
 
-import { ActionMenu } from "~/components/action-menu";
-import { useUi } from "~/contexts/ui-context";
-import { ConfirmationModal } from "~/modals/confirmation-modal";
-import { deleteTopic } from "~/services/topics";
-import type { Topic } from "~/types/topics";
+import { ActionMenu } from "#/components/action-menu";
+import { useUi } from "#/contexts/ui-context";
+import { ConfirmationModal } from "#/modals/confirmation-modal";
+import { deleteTopic } from "#/services/topics";
+import type { Topic } from "#/types/topics";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,

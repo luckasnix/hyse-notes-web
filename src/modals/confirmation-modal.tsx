@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { modalContentStyle } from "~/styles/common";
+import { modalContentStyle } from "#/styles/common";
 
 const contentStyle: SxProps<Theme> = {
   ...modalContentStyle,

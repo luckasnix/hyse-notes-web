@@ -1,7 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
 
-import type { Note } from "~/types/notes";
-import type { Topic } from "~/types/topics";
+import type { Note } from "#/types/notes";
+import type { Topic } from "#/types/topics";
 
 export const localDb = new Dexie("HyseNotes") as Dexie & {
   topics: EntityTable<Topic, "id">;

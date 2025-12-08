@@ -2,9 +2,9 @@ import fontsourceVariableNotoSansCss from "@fontsource-variable/noto-sans?url";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { type ReactNode, Suspense } from "react";
 
-import { UiProvider } from "~/contexts/ui-context";
-import { FallbackPage } from "~/pages/fallback-page";
-import { NotFoundPage } from "~/pages/not-found-page";
+import { UiProvider } from "#/contexts/ui-context";
+import { FallbackPage } from "#/pages/fallback-page";
+import { NotFoundPage } from "#/pages/not-found-page";
 
 const RootDocument = ({ children }: { children: ReactNode }) => (
   // TODO: Add internationalization with American English and Brazilian Portuguese

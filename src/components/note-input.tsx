@@ -6,9 +6,9 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import { type ChangeEvent, useState } from "react";
 
-import { useUi } from "~/contexts/ui-context";
-import { addNote } from "~/services/notes";
-import type { Topic } from "~/types/topics";
+import { useUi } from "#/contexts/ui-context";
+import { addNote } from "#/services/notes";
+import type { Topic } from "#/types/topics";
 
 const containerStyle: SxProps<Theme> = {
   paddingX: 3,

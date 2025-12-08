@@ -3,11 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState } from "react";
 
-import { localDb } from "~/database/local";
-import { TopicAdditionModal } from "~/modals/topic-addition-modal";
-import { MainSection } from "~/sections/main-section";
-import { NotesSection } from "~/sections/notes-section";
-import { TopicsSection } from "~/sections/topics-section";
+import { localDb } from "#/database/local";
+import { TopicAdditionModal } from "#/modals/topic-addition-modal";
+import { MainSection } from "#/sections/main-section";
+import { NotesSection } from "#/sections/notes-section";
+import { TopicsSection } from "#/sections/topics-section";
 
 const TopicsRoute = () => {
   const { topicId } = Route.useParams();
