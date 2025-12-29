@@ -6,8 +6,8 @@ export const convertTimestampToDate = (timestampInSeconds: number): string => {
   const date = new Date(timestampInSeconds * 1000);
 
   return new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
-    timeStyle: "long",
-    timeZone: "UTC",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
   }).format(date);
 };

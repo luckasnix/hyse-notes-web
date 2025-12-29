@@ -116,31 +116,30 @@ export const NoteList = ({ topic }: NoteListProps) => {
     <Stack direction="column-reverse" spacing={2} sx={containerStyle}>
       {notes.map((note) => (
         // TODO: Enable user reactions
-        <Stack key={note.id} spacing={1} sx={noteContainerStyle}>
-          <Stack direction="row" spacing={1}>
-            <Box sx={textContainerStyle}>
-              <Typography variant="body1" whiteSpace="pre-wrap">
-                {note.content}
-              </Typography>
-            </Box>
-            <Box>
-              <IconButton
-                size="small"
-                onClick={(event) => {
-                  openMenu(event, note.id);
-                }}
-              >
-                <MoreVertIcon />
-              </IconButton>
-            </Box>
+        <Stack
+          key={note.id}
+          direction="row"
+          spacing={1}
+          sx={noteContainerStyle}
+        >
+          <Stack direction="column" spacing={1} sx={textContainerStyle}>
+            <Typography variant="body1" whiteSpace="pre-wrap">
+              {note.content}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {convertTimestampToDate(note.createdAt)}
+            </Typography>
           </Stack>
-          <Stack direction="row" spacing={1}>
-            <Box sx={textContainerStyle}>
-              <Typography variant="caption" color="text.secondary">
-                {convertTimestampToDate(note.createdAt)}
-              </Typography>
-            </Box>
-          </Stack>
+          <Box>
+            <IconButton
+              size="small"
+              onClick={(event) => {
+                openMenu(event, note.id);
+              }}
+            >
+              <MoreVertIcon />
+            </IconButton>
+          </Box>
         </Stack>
       ))}
       <ActionMenu
