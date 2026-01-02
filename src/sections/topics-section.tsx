@@ -9,7 +9,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { Fragment, type MouseEventHandler } from "react";
 
 import { TopicItem } from "#/components/topic-item";
-import { localDb } from "#/database/local";
+import { db } from "#/integrations/dexie";
 
 const containerStyle: SxProps<Theme> = {
   width: "100%",
@@ -35,7 +35,7 @@ export const TopicsSection = ({
 }: TopicsSectionProps) => {
   const topics = useLiveQuery(
     () => {
-      return localDb.topics.orderBy("updatedAt").toArray();
+      return db.topics.orderBy("updatedAt").toArray();
     },
     [],
     [],

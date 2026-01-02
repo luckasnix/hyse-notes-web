@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import { localDb } from "#/database/local";
+import { db } from "#/integrations/dexie";
 import type { TopicValues } from "#/schemas/topics";
 import type { Topic } from "#/types/topics";
 import { getTimestampInSeconds } from "#/utils/general";
@@ -19,7 +19,7 @@ export const addTopic = async (
       createdAt: timestampInSeconds,
       updatedAt: timestampInSeconds,
     };
-    await localDb.topics.add(topicToAdd);
+    await db.topics.add(topicToAdd);
     onSuccess?.();
   } catch {
     onError?.();
@@ -37,7 +37,7 @@ export const updateTopic = async (
       ...newTopic,
       updatedAt: timestampInSeconds,
     };
-    await localDb.topics.update(newTopic.id, topicToUpdate);
+    await db.topics.update(newTopic.id, topicToUpdate);
     onSuccess?.();
   } catch {
     onError?.();
@@ -50,8 +50,8 @@ export const deleteTopic = async (
   onError?: () => void,
 ): Promise<void> => {
   try {
-    await localDb.topics.delete(topicId);
-    await localDb.notes.where("topicId").equals(topicId).delete();
+    await db.topics.delete(topicId);
+    await db.notes.where("topicId").equals(topicId).delete();
     onSuccess?.();
   } catch {
     onError?.();

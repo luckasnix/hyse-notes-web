@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import { localDb } from "#/database/local";
+import { db } from "#/integrations/dexie";
 import type { Note } from "#/types/notes";
 import { getTimestampInSeconds } from "#/utils/general";
 
@@ -21,7 +21,7 @@ export const addNote = async (
       content: noteContent,
       reactions: [],
     };
-    await localDb.notes.add(noteToAdd);
+    await db.notes.add(noteToAdd);
     onSuccess?.();
   } catch {
     onError?.();
@@ -39,7 +39,7 @@ export const updateNote = async (
       ...newNote,
       updatedAt: timestampInSeconds,
     };
-    await localDb.notes.update(newNote.id, noteToUpdate);
+    await db.notes.update(newNote.id, noteToUpdate);
     onSuccess?.();
   } catch {
     onError?.();
@@ -53,7 +53,7 @@ export const deleteNote = async (
 ): Promise<void> => {
   if (currentNoteId) {
     try {
-      await localDb.notes.delete(currentNoteId);
+      await db.notes.delete(currentNoteId);
       onSuccess?.();
     } catch {
       onError?.();

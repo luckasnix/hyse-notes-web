@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState } from "react";
 
-import { localDb } from "#/database/local";
+import { db } from "#/integrations/dexie";
 import { TopicAdditionModal } from "#/modals/topic-addition-modal";
 import { MainSection } from "#/sections/main-section";
 import { NotesSection } from "#/sections/notes-section";
@@ -20,7 +20,7 @@ const TopicsRoute = () => {
     if (!topicId) {
       return undefined;
     }
-    return localDb.topics.get(topicId);
+    return db.topics.get(topicId);
   }, [topicId]);
 
   const selectTopic = (id: string) => {
