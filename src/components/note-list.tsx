@@ -1,13 +1,17 @@
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { darken } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { useScroll } from "ahooks";
 import { useLiveQuery } from "dexie-react-hooks";
-import { type MouseEvent, useMemo, useState } from "react";
+import { type MouseEvent, useMemo, useRef, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
 import { useUi } from "#/contexts/ui-context";
@@ -36,6 +40,17 @@ const textContainerStyle: SxProps<Theme> = {
   flex: 1,
 };
 
+const scrollToBottomButtonStyle: SxProps<Theme> = {
+  position: "fixed",
+  bottom: 112,
+  right: 24,
+  backgroundColor: "background.paper",
+  boxShadow: 2,
+  "&:hover": {
+    backgroundColor: (theme) => darken(theme.palette.background.paper, 0.05),
+  },
+};
+
 export type NoteListProps = Readonly<{
   topic: Topic;
 }>;
@@ -48,6 +63,8 @@ export const NoteList = ({ topic }: NoteListProps) => {
   const [isNoteUpdateModalOpen, setIsNoteUpdateModalOpen] =
     useState<boolean>(false);
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const scroll = useScroll(containerRef);
   const open = Boolean(anchorEl);
 
   const notes = useLiveQuery(
@@ -113,7 +130,12 @@ export const NoteList = ({ topic }: NoteListProps) => {
   };
 
   return (
-    <Stack direction="column-reverse" spacing={2} sx={containerStyle}>
+    <Stack
+      direction="column-reverse"
+      spacing={2}
+      ref={containerRef}
+      sx={containerStyle}
+    >
       {notes.map((note) => (
         // TODO: Enable user reactions
         <Stack
@@ -132,7 +154,6 @@ export const NoteList = ({ topic }: NoteListProps) => {
           </Stack>
           <Box>
             <IconButton
-              size="small"
               onClick={(event) => {
                 openMenu(event, note.id);
               }}
@@ -142,6 +163,20 @@ export const NoteList = ({ topic }: NoteListProps) => {
           </Box>
         </Stack>
       ))}
+      <Fade in={Boolean(scroll?.top && scroll.top < -800)} timeout={400}>
+        <IconButton
+          sx={scrollToBottomButtonStyle}
+          onClick={() => {
+            containerRef.current?.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+          }}
+        >
+          <ArrowDownwardIcon />
+        </IconButton>
+      </Fade>
       <ActionMenu
         anchorEl={anchorEl}
         open={open}
