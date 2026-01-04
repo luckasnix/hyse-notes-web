@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { darken } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import { type ChangeEvent, useState } from "react";
 
@@ -16,6 +17,15 @@ const containerStyle: SxProps<Theme> = {
   borderTopWidth: 1,
   borderTopStyle: "solid",
   borderTopColor: "divider",
+};
+
+const submitButtonStyle: SxProps<Theme> = {
+  backgroundColor: "primary.main",
+  color: "primary.contrastText",
+  boxShadow: 2,
+  "&:hover": {
+    backgroundColor: (theme) => darken(theme.palette.primary.main, 0.05),
+  },
 };
 
 export type NoteInputProps = Readonly<{
@@ -60,7 +70,7 @@ export const NoteInput = ({ topic }: NoteInputProps) => {
       />
       <Box>
         <IconButton
-          color="primary"
+          sx={submitButtonStyle}
           disabled={!trimmedContent.length}
           onClick={handleSubmitButtonClick}
         >
