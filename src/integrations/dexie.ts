@@ -10,5 +10,5 @@ export const db = new Dexie("HyseNotes") as Dexie & {
 
 db.version(1).stores({
   topics: "id, createdAt, updatedAt, title, description",
-  notes: "id, createdAt, updatedAt, topicId, content, reactions",
+  notes: "id, createdAt, updatedAt, topicId, content, *reactions",
 });
