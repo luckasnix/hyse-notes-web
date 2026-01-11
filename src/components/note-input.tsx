@@ -1,10 +1,10 @@
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { darken } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
+import { IconChevronUp } from "@tabler/icons-react";
 import { type ChangeEvent, useState } from "react";
 
 import { useUi } from "#/contexts/ui-context";
@@ -74,7 +74,7 @@ export const NoteInput = ({ topic }: NoteInputProps) => {
           disabled={!trimmedContent.length}
           onClick={handleSubmitButtonClick}
         >
-          <ArrowUpwardIcon />
+          <IconChevronUp />
         </IconButton>
       </Box>
     </Stack>

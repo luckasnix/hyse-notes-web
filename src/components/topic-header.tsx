@@ -1,12 +1,14 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import {
+  IconDotsVertical,
+  IconTrashFilled,
+  IconWritingFilled,
+} from "@tabler/icons-react";
 import { useNavigate } from "@tanstack/react-router";
 import { type MouseEvent, useState } from "react";
 
@@ -116,7 +118,7 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
       </Box>
       <Box>
         <IconButton onClick={openMenu}>
-          <MoreVertIcon />
+          <IconDotsVertical />
         </IconButton>
       </Box>
       <ActionMenu
@@ -127,13 +129,13 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
           {
             type: "neutral",
             label: "Update topic",
-            icon: <ModeEditIcon />,
+            icon: <IconWritingFilled />,
             onClick: handleUpdateTopicOptionClick,
           },
           {
             type: "error",
             label: "Delete topic",
-            icon: <DeleteIcon />,
+            icon: <IconTrashFilled />,
             onClick: handleDeleteTopicOptionClick,
           },
         ]}

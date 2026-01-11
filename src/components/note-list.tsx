@@ -1,7 +1,3 @@
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
@@ -9,6 +5,12 @@ import Stack from "@mui/material/Stack";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { darken } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import {
+  IconChevronDown,
+  IconDotsVertical,
+  IconTrashFilled,
+  IconWritingFilled,
+} from "@tabler/icons-react";
 import { useScroll } from "ahooks";
 import { useLiveQuery } from "dexie-react-hooks";
 import { type MouseEvent, useMemo, useRef, useState } from "react";
@@ -158,7 +160,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
                 openMenu(event, note.id);
               }}
             >
-              <MoreVertIcon />
+              <IconDotsVertical />
             </IconButton>
           </Box>
         </Stack>
@@ -174,7 +176,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
             });
           }}
         >
-          <ArrowDownwardIcon />
+          <IconChevronDown />
         </IconButton>
       </Fade>
       <ActionMenu
@@ -185,13 +187,13 @@ export const NoteList = ({ topic }: NoteListProps) => {
           {
             type: "neutral",
             label: "Update note",
-            icon: <ModeEditIcon />,
+            icon: <IconWritingFilled />,
             onClick: handleUpdateNoteOptionClick,
           },
           {
             type: "error",
             label: "Delete note",
-            icon: <DeleteIcon />,
+            icon: <IconTrashFilled />,
             onClick: handleDeleteNoteOptionClick,
           },
         ]}

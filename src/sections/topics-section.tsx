@@ -1,10 +1,10 @@
-import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
 import type { SxProps, Theme } from "@mui/material/styles";
+import { IconPlus } from "@tabler/icons-react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Fragment, type MouseEventHandler } from "react";
 
@@ -49,7 +49,7 @@ export const TopicsSection = ({
             variant="contained"
             size="large"
             fullWidth
-            endIcon={<AddIcon />}
+            endIcon={<IconPlus />}
             onClick={onAddTopicButtonClick}
           >
             Add topic
