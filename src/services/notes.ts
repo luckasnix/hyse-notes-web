@@ -1,8 +1,6 @@
-import { nanoid } from "nanoid";
-
 import { db } from "#/integrations/dexie";
 import type { Note } from "#/types/notes";
-import { getTimestampInSeconds } from "#/utils/general";
+import { generateBase62Id, getTimestampInSeconds } from "#/utils/general";
 
 export const addNote = async (
   topicId: string,
@@ -11,7 +9,7 @@ export const addNote = async (
   onError?: () => void,
 ): Promise<void> => {
   try {
-    const noteId = nanoid(6);
+    const noteId = generateBase62Id(6);
     const timestampInSeconds = getTimestampInSeconds();
     const noteToAdd: Note = {
       id: noteId,

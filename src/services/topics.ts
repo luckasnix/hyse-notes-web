@@ -1,9 +1,7 @@
-import { nanoid } from "nanoid";
-
 import { db } from "#/integrations/dexie";
 import type { TopicValues } from "#/schemas/topics";
 import type { Topic } from "#/types/topics";
-import { getTimestampInSeconds } from "#/utils/general";
+import { generateBase62Id, getTimestampInSeconds } from "#/utils/general";
 
 export const addTopic = async (
   values: TopicValues,
@@ -11,7 +9,7 @@ export const addTopic = async (
   onError?: () => void,
 ): Promise<void> => {
   try {
-    const topicId = nanoid(4);
+    const topicId = generateBase62Id(4);
     const timestampInSeconds = getTimestampInSeconds();
     const topicToAdd: Topic = {
       ...values,
