@@ -3,18 +3,22 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { type ReactNode, Suspense } from "react";
 
 import { UiProvider } from "#/contexts/ui-context";
+import { UserProvider } from "#/contexts/user-context";
+import { signedInUserMock } from "#/mocks/users";
 import { FallbackPage } from "#/pages/fallback-page";
 import { NotFoundPage } from "#/pages/not-found-page";
 
 const RootDocument = ({ children }: { children: ReactNode }) => (
   // TODO: Add internationalization with American English and Brazilian Portuguese
-  <html lang="en-US">
+  <html lang={signedInUserMock.profile.language}>
     <head>
       <HeadContent />
     </head>
     <body>
       <UiProvider>
-        <Suspense fallback={<FallbackPage />}>{children}</Suspense>
+        <UserProvider user={signedInUserMock}>
+          <Suspense fallback={<FallbackPage />}>{children}</Suspense>
+        </UserProvider>
       </UiProvider>
       <Scripts />
     </body>

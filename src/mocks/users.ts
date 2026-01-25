@@ -1,6 +1,6 @@
 import type { User } from "#/types/users";
 
-export const userMock: User = {
+export const signedInUserMock: User = {
   profile: {
     language: "pt-BR",
   },
