@@ -17,6 +17,7 @@ import { type MouseEvent, useMemo, useRef, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
 import { useUi } from "#/contexts/ui-context";
+import { useUser } from "#/contexts/user-context";
 import { db } from "#/integrations/dexie";
 import { ConfirmationModal } from "#/modals/confirmation-modal";
 import { NoteUpdateModal } from "#/modals/note-update-modal";
@@ -59,6 +60,7 @@ export type NoteListProps = Readonly<{
 
 export const NoteList = ({ topic }: NoteListProps) => {
   const { showToast } = useUi();
+  const { user } = useUser();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
     useState<boolean>(false);
@@ -151,7 +153,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
               {note.content}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              {convertTimestampToDate(note.createdAt)}
+              {convertTimestampToDate(note.createdAt, user.profile.language)}
             </Typography>
           </Stack>
           <Box>

@@ -1,3 +1,5 @@
+import type { SupportedLanguage } from "#/types/users";
+
 export const BASE62_CHARS =
   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -5,10 +7,13 @@ export const getTimestampInSeconds = (): number => {
   return Math.floor(Date.now() / 1000);
 };
 
-export const convertTimestampToDate = (timestampInSeconds: number): string => {
+export const convertTimestampToDate = (
+  timestampInSeconds: number,
+  locale: SupportedLanguage,
+): string => {
   const date = new Date(timestampInSeconds * 1000);
 
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat(locale, {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
