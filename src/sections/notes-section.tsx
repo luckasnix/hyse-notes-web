@@ -5,7 +5,7 @@ import { useState } from "react";
 import { NoteInput } from "#/components/note-input";
 import { NoteList } from "#/components/note-list";
 import { TopicHeader } from "#/components/topic-header";
-import { TopicUpdateModal } from "#/components/topic-update-modal";
+import { TopicUpdateDialog } from "#/components/topic-update-dialog";
 import type { Topic } from "#/types/topics";
 
 const containerStyle: SxProps<Theme> = {
@@ -35,7 +35,7 @@ export const NotesSection = ({ selectedTopic }: NotesSectionProps) => {
       <NoteList topic={selectedTopic} />
       {/* TODO: Make React distinguish note inputs from different topics (perhaps using the "key" prop) */}
       <NoteInput topic={selectedTopic} />
-      <TopicUpdateModal
+      <TopicUpdateDialog
         topic={selectedTopic}
         open={isModalOpen}
         onClose={closeModal}

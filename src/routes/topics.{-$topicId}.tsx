@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState } from "react";
-import { TopicAdditionModal } from "#/components/topic-addition-modal";
+import { TopicAdditionDialog } from "#/components/topic-addition-dialog";
 import { db } from "#/integrations/dexie";
 import { MainSection } from "#/sections/main-section";
 import { NotesSection } from "#/sections/notes-section";
@@ -44,7 +44,7 @@ const TopicsRoute = () => {
         selectTopic={selectTopic}
         onAddTopicButtonClick={openModal}
       />
-      <TopicAdditionModal open={isModalOpen} onClose={closeModal} />
+      <TopicAdditionDialog open={isModalOpen} onClose={closeModal} />
       {!selectedTopic ? (
         <MainSection />
       ) : (

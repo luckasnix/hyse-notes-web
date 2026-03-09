@@ -13,7 +13,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { type MouseEvent, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
-import { ConfirmationModal } from "#/components/confirmation-modal";
+import { ConfirmationDialog } from "#/components/confirmation-dialog";
 import { useUi } from "#/contexts/ui-context";
 import { deleteTopic } from "#/services/topics";
 import type { Topic } from "#/types/topics";
@@ -140,7 +140,7 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
           },
         ]}
       />
-      <ConfirmationModal
+      <ConfirmationDialog
         open={isConfirmationModalOpen}
         content="Are you sure you want to delete this topic?"
         labels={{

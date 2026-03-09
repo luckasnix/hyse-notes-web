@@ -16,8 +16,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { type MouseEvent, useMemo, useRef, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
-import { ConfirmationModal } from "#/components/confirmation-modal";
-import { NoteUpdateModal } from "#/components/note-update-modal";
+import { ConfirmationDialog } from "#/components/confirmation-dialog";
+import { NoteUpdateDialog } from "#/components/note-update-dialog";
 import { useUi } from "#/contexts/ui-context";
 import { useUser } from "#/contexts/user-context";
 import { db } from "#/integrations/dexie";
@@ -200,7 +200,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
           },
         ]}
       />
-      <ConfirmationModal
+      <ConfirmationDialog
         open={isConfirmationModalOpen}
         content="Are you sure you want to delete this note?"
         labels={{
@@ -211,7 +211,7 @@ export const NoteList = ({ topic }: NoteListProps) => {
         onConfirm={handleNoteDeletionConfirmation}
       />
       {selectedNote && (
-        <NoteUpdateModal
+        <NoteUpdateDialog
           note={selectedNote}
           open={isNoteUpdateModalOpen}
           onClose={closeNoteUpdateModal}

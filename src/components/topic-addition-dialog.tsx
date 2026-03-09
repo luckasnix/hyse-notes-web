@@ -1,19 +1,19 @@
-import Modal from "@mui/material/Modal";
+import Dialog from "@mui/material/Dialog";
 
 import { TopicForm } from "#/components/topic-form";
 import { useUi } from "#/contexts/ui-context";
 import type { TopicValues } from "#/schemas/topics";
 import { addTopic } from "#/services/topics";
 
-export type TopicAdditionModalProps = Readonly<{
+export type TopicAdditionDialogProps = Readonly<{
   open: boolean;
   onClose: () => void;
 }>;
 
-export const TopicAdditionModal = ({
+export const TopicAdditionDialog = ({
   open,
   onClose,
-}: TopicAdditionModalProps) => {
+}: TopicAdditionDialogProps) => {
   const { showToast } = useUi();
 
   const handleSubmit = (values: TopicValues) => {
@@ -26,7 +26,7 @@ export const TopicAdditionModal = ({
   };
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <TopicForm
         title="Add topic"
         labels={{ submit: "Add", cancel: "Cancel" }}
@@ -37,6 +37,6 @@ export const TopicAdditionModal = ({
         onCancel={onClose}
         onSubmit={handleSubmit}
       />
-    </Modal>
+    </Dialog>
   );
 };

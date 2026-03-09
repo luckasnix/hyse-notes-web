@@ -1,4 +1,4 @@
-import Modal from "@mui/material/Modal";
+import Dialog from "@mui/material/Dialog";
 
 import { NoteForm } from "#/components/note-form";
 import { useUi } from "#/contexts/ui-context";
@@ -6,17 +6,17 @@ import type { NoteValues } from "#/schemas/notes";
 import { updateNote } from "#/services/notes";
 import type { Note } from "#/types/notes";
 
-export type NoteUpdateModalProps = Readonly<{
+export type NoteUpdateDialogProps = Readonly<{
   note: Note;
   open: boolean;
   onClose: () => void;
 }>;
 
-export const NoteUpdateModal = ({
+export const NoteUpdateDialog = ({
   note,
   open,
   onClose,
-}: NoteUpdateModalProps) => {
+}: NoteUpdateDialogProps) => {
   const { showToast } = useUi();
 
   const handleSubmit = (values: NoteValues) => {
@@ -33,7 +33,7 @@ export const NoteUpdateModal = ({
   };
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <NoteForm
         title="Update note"
         labels={{ submit: "Update", cancel: "Cancel" }}
@@ -43,6 +43,6 @@ export const NoteUpdateModal = ({
         onCancel={onClose}
         onSubmit={handleSubmit}
       />
-    </Modal>
+    </Dialog>
   );
 };

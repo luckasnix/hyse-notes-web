@@ -1,4 +1,4 @@
-import Modal from "@mui/material/Modal";
+import Dialog from "@mui/material/Dialog";
 
 import { TopicForm } from "#/components/topic-form";
 import { useUi } from "#/contexts/ui-context";
@@ -6,17 +6,17 @@ import type { TopicValues } from "#/schemas/topics";
 import { updateTopic } from "#/services/topics";
 import type { Topic } from "#/types/topics";
 
-export type TopicUpdateModalProps = Readonly<{
+export type TopicUpdateDialogProps = Readonly<{
   topic: Topic;
   open: boolean;
   onClose: () => void;
 }>;
 
-export const TopicUpdateModal = ({
+export const TopicUpdateDialog = ({
   topic,
   open,
   onClose,
-}: TopicUpdateModalProps) => {
+}: TopicUpdateDialogProps) => {
   const { showToast } = useUi();
 
   const handleSubmit = (values: TopicValues) => {
@@ -33,7 +33,7 @@ export const TopicUpdateModal = ({
   };
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <TopicForm
         title="Update topic"
         labels={{ submit: "Update", cancel: "Cancel" }}
@@ -44,6 +44,6 @@ export const TopicUpdateModal = ({
         onCancel={onClose}
         onSubmit={handleSubmit}
       />
-    </Modal>
+    </Dialog>
   );
 };

@@ -1,23 +1,14 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import Stack from "@mui/material/Stack";
-import type { SxProps, Theme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import { useForm } from "@tanstack/react-form";
 import type { SubmitEventHandler } from "react";
 
 import { type TopicValues, topicSchema } from "#/schemas/topics";
-import { modalContentStyle } from "#/styles/common";
-
-const contentStyle: SxProps<Theme> = {
-  ...modalContentStyle,
-  width: 480,
-};
-
-const actionsStyle: SxProps<Theme> = {
-  justifyContent: "end",
-};
 
 export type TopicFormProps = Readonly<{
   title: string;
@@ -58,55 +49,54 @@ export const TopicForm = ({
   };
 
   return (
-    <Box
-      component="form"
-      autoComplete="off"
-      onSubmit={handleSubmit}
-      sx={contentStyle}
-    >
-      <Typography variant="h6">{title}</Typography>
-      <form.Field name="title">
-        {(field) => (
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            label="Title"
-            value={field.state.value}
-            onChange={(event) => {
-              field.handleChange(event.target.value);
-            }}
-            error={field.state.meta.errors.length > 0}
-            helperText={field.state.meta.errors[0]?.message}
-          />
-        )}
-      </form.Field>
-      <form.Field name="description">
-        {(field) => (
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            multiline
-            rows={2}
-            label="Description"
-            value={field.state.value}
-            onChange={(event) => {
-              field.handleChange(event.target.value);
-            }}
-            error={field.state.meta.errors.length > 0}
-            helperText={field.state.meta.errors[0]?.message}
-          />
-        )}
-      </form.Field>
-      <Stack direction="row" spacing={1} sx={actionsStyle}>
+    <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+      <DialogTitle>{title}</DialogTitle>
+      <DialogContent>
+        <Stack spacing={2} sx={{ pt: 1 }}>
+          <form.Field name="title">
+            {(field) => (
+              <TextField
+                variant="outlined"
+                size="small"
+                fullWidth
+                label="Title"
+                value={field.state.value}
+                onChange={(event) => {
+                  field.handleChange(event.target.value);
+                }}
+                error={field.state.meta.errors.length > 0}
+                helperText={field.state.meta.errors[0]?.message}
+              />
+            )}
+          </form.Field>
+          <form.Field name="description">
+            {(field) => (
+              <TextField
+                variant="outlined"
+                size="small"
+                fullWidth
+                multiline
+                rows={2}
+                label="Description"
+                value={field.state.value}
+                onChange={(event) => {
+                  field.handleChange(event.target.value);
+                }}
+                error={field.state.meta.errors.length > 0}
+                helperText={field.state.meta.errors[0]?.message}
+              />
+            )}
+          </form.Field>
+        </Stack>
+      </DialogContent>
+      <DialogActions>
         <Button variant="outlined" size="small" onClick={onCancel}>
           {labels.cancel}
         </Button>
         <Button variant="contained" size="small" type="submit">
           {labels.submit}
         </Button>
-      </Stack>
+      </DialogActions>
     </Box>
   );
 };
