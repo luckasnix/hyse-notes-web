@@ -16,11 +16,11 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { type MouseEvent, useMemo, useRef, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
+import { ConfirmationModal } from "#/components/confirmation-modal";
+import { NoteUpdateModal } from "#/components/note-update-modal";
 import { useUi } from "#/contexts/ui-context";
 import { useUser } from "#/contexts/user-context";
 import { db } from "#/integrations/dexie";
-import { ConfirmationModal } from "#/modals/confirmation-modal";
-import { NoteUpdateModal } from "#/modals/note-update-modal";
 import { deleteNote } from "#/services/notes";
 import type { Topic } from "#/types/topics";
 import { convertTimestampToDate } from "#/utils/general";

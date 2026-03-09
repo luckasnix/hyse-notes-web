@@ -13,8 +13,8 @@ import { useNavigate } from "@tanstack/react-router";
 import { type MouseEvent, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
+import { ConfirmationModal } from "#/components/confirmation-modal";
 import { useUi } from "#/contexts/ui-context";
-import { ConfirmationModal } from "#/modals/confirmation-modal";
 import { deleteTopic } from "#/services/topics";
 import type { Topic } from "#/types/topics";
 

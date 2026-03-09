@@ -5,7 +5,7 @@ import { useState } from "react";
 import { NoteInput } from "#/components/note-input";
 import { NoteList } from "#/components/note-list";
 import { TopicHeader } from "#/components/topic-header";
-import { TopicUpdateModal } from "#/modals/topic-update-modal";
+import { TopicUpdateModal } from "#/components/topic-update-modal";
 import type { Topic } from "#/types/topics";
 
 const containerStyle: SxProps<Theme> = {
