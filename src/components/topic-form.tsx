@@ -5,7 +5,7 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useForm } from "@tanstack/react-form";
-import type { FormEventHandler } from "react";
+import type { SubmitEventHandler } from "react";
 
 import { type TopicValues, topicSchema } from "#/schemas/topics";
 import { modalContentStyle } from "#/styles/common";
@@ -52,7 +52,7 @@ export const TopicForm = ({
     },
   });
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     form.handleSubmit();
   };
