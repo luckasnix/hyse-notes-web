@@ -43,6 +43,11 @@ const textStyle: SxProps<Theme> = {
   textOverflow: "ellipsis",
 };
 
+const descriptionStyle: SxProps<Theme> = {
+  ...textStyle,
+  color: "text.secondary",
+};
+
 export type TopicHeaderProps = Readonly<{
   topic: Topic;
   openModal: () => void;
@@ -107,12 +112,7 @@ export const TopicHeader = ({ topic, openModal }: TopicHeaderProps) => {
         <Typography variant="h6" component="h2" noWrap sx={textStyle}>
           {topic.title}
         </Typography>
-        <Typography
-          variant="body2"
-          noWrap
-          color="text.secondary"
-          sx={textStyle}
-        >
+        <Typography variant="body2" noWrap sx={descriptionStyle}>
           {topic.description}
         </Typography>
       </Box>

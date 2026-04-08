@@ -43,6 +43,14 @@ const textContainerStyle: SxProps<Theme> = {
   flex: 1,
 };
 
+const noteContentStyle: SxProps<Theme> = {
+  whiteSpace: "pre-wrap",
+};
+
+const noteDateStyle: SxProps<Theme> = {
+  color: "text.secondary",
+};
+
 const scrollToBottomButtonStyle: SxProps<Theme> = {
   position: "fixed",
   bottom: 112,
@@ -149,10 +157,10 @@ export const NoteList = ({ topic }: NoteListProps) => {
           sx={noteContainerStyle}
         >
           <Stack direction="column" spacing={1} sx={textContainerStyle}>
-            <Typography variant="body1" whiteSpace="pre-wrap">
+            <Typography variant="body1" sx={noteContentStyle}>
               {note.content}
             </Typography>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" sx={noteDateStyle}>
               {convertTimestampToDate(note.createdAt, user.profile.language)}
             </Typography>
           </Stack>
