@@ -2,6 +2,7 @@ import Grid from "@mui/material/Grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState } from "react";
+
 import { TopicAdditionDialog } from "#/components/topic-addition-dialog";
 import { db } from "#/integrations/dexie";
 import { MainSection } from "#/sections/main-section";

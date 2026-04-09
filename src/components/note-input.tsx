@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import { IconChevronUp } from "@tabler/icons-react";
 import { type ChangeEvent, useState } from "react";
 
-import { useUi } from "#/contexts/ui-context";
+import { useUi } from "#/contexts/ui/hook";
 import { addNote } from "#/services/notes";
 import type { Topic } from "#/types/topics";
 

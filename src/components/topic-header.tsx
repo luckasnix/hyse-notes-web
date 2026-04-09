@@ -14,7 +14,7 @@ import { type MouseEvent, useState } from "react";
 
 import { ActionMenu } from "#/components/action-menu";
 import { ConfirmationDialog } from "#/components/confirmation-dialog";
-import { useUi } from "#/contexts/ui-context";
+import { useUi } from "#/contexts/ui/hook";
 import { deleteTopic } from "#/services/topics";
 import type { Topic } from "#/types/topics";
 

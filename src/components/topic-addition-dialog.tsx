@@ -1,7 +1,7 @@
 import Dialog from "@mui/material/Dialog";
 
 import { TopicForm } from "#/components/topic-form";
-import { useUi } from "#/contexts/ui-context";
+import { useUi } from "#/contexts/ui/hook";
 import type { TopicValues } from "#/schemas/topics";
 import { addTopic } from "#/services/topics";
 

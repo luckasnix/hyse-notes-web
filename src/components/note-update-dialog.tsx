@@ -1,7 +1,7 @@
 import Dialog from "@mui/material/Dialog";
 
 import { NoteForm } from "#/components/note-form";
-import { useUi } from "#/contexts/ui-context";
+import { useUi } from "#/contexts/ui/hook";
 import type { NoteValues } from "#/schemas/notes";
 import { updateNote } from "#/services/notes";
 import type { Note } from "#/types/notes";
